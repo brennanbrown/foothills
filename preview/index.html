@@ -1,0 +1,385 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foothills Preview</title>
+  <!-- External CSS from repo (relative path works on GitHub Pages and local) -->
+  <link rel="stylesheet" href="../assets/foothills.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    :root {
+      --bg: #FFFEF7;
+      --text: #2F2F2F;
+      --accent: #D2691E;
+      --link: #B8860B;
+      --font-poetry: Georgia, serif;
+      --font-headers: "Iowan Old Style", Georgia, serif;
+      --font-body: Georgia, serif;
+      --font-ui: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  </style>
+</head>
+<body class="foothills" data-palette="Prairie">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-content">
+      <h1 class="site-title" style="font-family: var(--font-headers, var(--font-body));"><a href="/">Foothills</a></h1>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#"><i class="fa-solid fa-user"></i>About</a>
+        <a href="#"><i class="fa-solid fa-book"></i>Books</a>
+        <a href="#"><i class="fa-solid fa-envelope"></i>Contact</a>
+        <a href="#"><i class="fa-regular fa-circle-question"></i>Ask</a>
+        <a href="#"><i class="fa-regular fa-paper-plane"></i>Submit</a>
+        <a href="#"><i class="fa-solid fa-shuffle"></i>Random</a>
+        <a href="#"><i class="fa-solid fa-box-archive"></i>Archive</a>
+        <button class="palette-toggle" type="button" aria-label="Change color palette"><i class="fa-solid fa-palette" aria-hidden="true"></i> Palette</button>
+      </nav>
+      <div class="header-actions">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer">☰ Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Overlay (preview) -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true" hidden>
+    <div class="search-overlay-inner" role="dialog" aria-modal="true" aria-label="Search">
+      <form class="search-form" action="/search" method="get">
+        <input class="search-input" type="text" name="q" value="" placeholder="Search" aria-label="Search">
+        <button class="search-button" type="submit">Search</button>
+      </form>
+      <button class="search-close" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  
+
+  <section class="hero-section" role="region" aria-label="Introduction">
+    <div class="container hero-content">
+      <div class="hero-inner">
+        <h2 class="hero-greeting" style="font-family: var(--font-headers, var(--font-body));">Hey there! I'm Kenny.</h2>
+        <p class="hero-intro">I believe every voice deserves to be heard—especially the ones that have been overlooked. As the founder of Write Club, I work with emerging writers to find their truth and power through storytelling.</p>
+        <div class="cta-container">
+          <p class="cta-text">Working on something and need a writing buddy?</p>
+          <a href="#" class="cta-button">Let's chat over decaf ☕</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search panel (preview) -->
+  <section class="search-panel" aria-label="Search">
+    <div class="container">
+      <form class="search-form" action="/search" method="get">
+        <input class="search-input" type="text" name="q" value="poetry" placeholder="Search" aria-label="Search">
+        <button class="search-button" type="submit">Search</button>
+      </form>
+      <p class="search-meta">12 Search results</p>
+    </div>
+  </section>
+
+  <div class="container content-wrapper">
+    <main id="main" class="posts-container" tabindex="-1">
+      <article class="post text" data-post-id="1">
+        <div class="post-content text-post">
+          <h2 class="post-title"><a href="#">Autumn over Nose Hill</a></h2>
+          <div class="post-body poetry-formatting">
+            <p>the wind moves through us<br>like a patient teacher<br>and all the hills bow</p>
+          </div>
+        </div>
+        <footer class="post-footer">
+          <div class="post-meta">
+            <time class="post-date"><a href="#">Sunday, September 14th, 2025 at 12:59PM</a></time>
+            <div class="post-tags" aria-label="Tags">
+              <a href="#" class="tag">#poetry</a>
+              <a href="#" class="tag">#calgary</a>
+            </div>
+            <span class="note-count">24 notes</span>
+          </div>
+          <div class="post-actions">
+            <a class="btn-action" href="#" aria-label="Reblog"><i class="fa-solid fa-retweet"></i></a>
+            <span class="like-wrapper" aria-label="Like"><i class="fa-regular fa-heart"></i></span>
+          </div>
+        </footer>
+        <section class="post-notes" aria-label="Notes">
+          <ol class="notes">
+            <li class="note">@sam liked this</li>
+            <li class="note">@jo reblogged this</li>
+          </ol>
+        </section>
+      </article>
+
+      <article class="post photo" data-post-id="2">
+        <div class="post-content photo-post">
+          <img src="https://images.unsplash.com/photo-1520697222869-9a6736fb3f5b?q=80&w=1200&auto=format&fit=crop" alt="Prairie sky">
+        </div>
+        <footer class="post-footer">
+          <div class="post-meta">
+            <time class="post-date"><a href="#">Saturday, September 13th, 2025 at 08:30AM</a></time>
+            <div class="post-tags" aria-label="Tags">
+              <a href="#" class="tag">#photography</a>
+            </div>
+          </div>
+          <div class="post-actions">
+            <button aria-label="Reblog">↻</button>
+            <button aria-label="Like">❤</button>
+          </div>
+        </footer>
+      </article>
+
+      <article class="post text" data-post-id="3">
+        <div class="post-content text-post">
+          <div class="post-body">
+            <p>Long-form reflection draft with standard paragraph styling. This lets us confirm body copy rhythm, link styles like <a href="#">inline links</a>, and lists:</p>
+            <ul>
+              <li>Generous line-height</li>
+              <li>Comfortable measure</li>
+              <li>Legible contrast</li>
+            </ul>
+          </div>
+        </div>
+        <footer class="post-footer">
+          <div class="post-meta">
+            <time class="post-date"><a href="#">Friday, September 12th, 2025 at 05:02PM</a></time>
+            <div class="post-tags" aria-label="Tags">
+              <a href="#" class="tag">#writing</a>
+              <a href="#" class="tag">#process</a>
+            </div>
+          </div>
+          <div class="post-actions"><a class="btn-action" href="#" aria-label="Reblog"><i class="fa-solid fa-retweet"></i></a><span class="like-wrapper" aria-label="Like"><i class="fa-regular fa-heart"></i></span></div>
+        </footer>
+      </article>
+
+      <article class="post quote" data-post-id="4">
+        <div class="post-content quote-post">
+          <blockquote class="quote">“We were loved before we knew our own names.”</blockquote>
+          <div class="source">— Someone's auntie</div>
+        </div>
+        <footer class="post-footer">
+          <div class="post-meta"><time class="post-date"><a href="#">Thursday, September 11th, 2025 at 09:12AM</a></time></div>
+          <div class="post-actions"><button aria-label="Reblog">↻</button><button aria-label="Like">❤</button></div>
+        </footer>
+      </article>
+
+      <article class="post link" data-post-id="5">
+        <div class="post-content link-post">
+          <a class="link" href="#" target="_blank">Open call for zines (YYC)</a>
+          <div class="description">Indie press looking for short poetry and micro-essays.</div>
+        </div>
+        <footer class="post-footer">
+          <div class="post-meta"><time class="post-date"><a href="#">Wednesday, September 3rd, 2025 at 11:00AM</a></time></div>
+          <div class="post-actions"><button aria-label="Reblog">↻</button><button aria-label="Like">❤</button></div>
+        </footer>
+      </article>
+
+      <article class="post chat" data-post-id="6">
+        <div class="post-content chat-post">
+          <h3 class="post-title"><a href="#">Workshop Notes</a></h3>
+          <ul class="chat-lines">
+            <li class="odd user_1"><span class="label">Kenny</span> Try reading the line break as a breath.</li>
+            <li class="even user_2"><span class="label">Sam</span> That helps the pacing a lot.</li>
+          </ul>
+        </div>
+        <footer class="post-footer">
+          <div class="post-meta"><time class="post-date"><a href="#">Monday, August 4th, 2025 at 07:45PM</a></time></div>
+          <div class="post-actions"><button aria-label="Reblog">↻</button><button aria-label="Like">❤</button></div>
+        </footer>
+      </article>
+
+      <!-- Related posts (preview sample) -->
+      <section class="related-posts" aria-label="Related posts">
+        <h3 class="related-title">Related posts</h3>
+        <div class="related-grid">
+          <article class="related-card"><a href="#">“prairie wind”</a></article>
+          <article class="related-card"><a href="#">Autumn walk</a></article>
+          <article class="related-card"><a href="#">River stones</a></article>
+          <article class="related-card"><a href="#">Night choir</a></article>
+        </div>
+      </section>
+
+      <nav class="pagination" role="navigation" aria-label="Pagination">
+        <a href="#" class="prev-page">← Newer posts</a>
+        <span class="current-page">1</span>
+        <a href="#" class="jump-page">2</a>
+        <a href="#" class="jump-page">3</a>
+        <a href="#" class="next-page">Older posts →</a>
+      </nav>
+    </main>
+
+    <aside class="sidebar" role="complementary">
+      <section class="about-widget card">
+        <h3>About Kenny</h3>
+        <div class="about-photo">
+          <img src="https://placehold.co/128x128" alt="Kenny avatar" width="128" height="128">
+        </div>
+        <div class="about-text">Queer Métis writer and founder of Write Club. Building community for emerging voices in Calgary and beyond.</div>
+        <p class="currently-reading"><strong>Currently:</strong> A Minor Chorus — Billy-Ray Belcourt</p>
+      </section>
+
+      <section class="social-widget card">
+        <h3>Connect</h3>
+        <nav class="social-links" aria-label="Social links">
+          <a href="mailto:mail@brennanbrown.ca"><i class="fa-regular fa-envelope"></i>Email</a>
+          <a href="https://instagram.com/username"><i class="fa-brands fa-instagram"></i>Instagram</a>
+          <a href="https://bsky.app/profile/username"><i class="fa-solid fa-cloud"></i>Bluesky</a>
+          <a href="https://www.goodreads.com/user/show/000000"><i class="fa-solid fa-book-open"></i>Goodreads</a>
+          <a href="#"><i class="fa-solid fa-square-rss"></i>RSS</a>
+          <a href="https://twitter.com/username"><i class="fa-brands fa-x-twitter"></i>Twitter</a>
+          <a href="https://archiveofourown.org/users/username"><i class="fa-solid fa-feather-pointed"></i>AO3</a>
+        </nav>
+      </section>
+
+      <section class="substack-widget card">
+        <h3>Newsletter</h3>
+        <div style="background:#fff;padding:1rem;border-radius:8px;border:1px solid rgba(0,0,0,.08)">Substack embed preview</div>
+      </section>
+
+      <section class="blogroll-widget card">
+        <h3>Fellow Writers</h3>
+        <ul class="blogroll">
+          <li><a href="#">Writer One</a> <span class="blogroll-description">Poetry and essays</span></li>
+          <li><a href="#">Writer Two</a> <span class="blogroll-description">Indie press editor</span></li>
+          <li><a href="#">Writer Three</a> <span class="blogroll-description">Calgary arts critic</span></li>
+          <li><a href="#">Writer Four</a> <span class="blogroll-description">Zine maker</span></li>
+          <li><a href="#">Writer Five</a> <span class="blogroll-description">Community organizer</span></li>
+        </ul>
+      </section>
+
+      <section class="featured-tags-widget card">
+        <h3>Featured tags</h3>
+        <div class="featured-tags" role="navigation" aria-label="Featured tags">
+          <a class="tag-chip" href="#">#poetry</a>
+          <a class="tag-chip" href="#">#writeclub</a>
+          <a class="tag-chip" href="#">#calgary</a>
+          <a class="tag-chip" href="#">#indigenous</a>
+        </div>
+      </section>
+
+      <section class="cta-widget card">
+        <h3>Community</h3>
+        <p>Join weekly gatherings, meet other writers, and share your work.</p>
+        <a href="#" class="write-club-link">See our community →</a>
+      </section>
+
+      <section class="donate-widget card">
+        <h3>Support</h3>
+        <p>If you enjoy this work, consider supporting—every small kindness helps the community grow.</p>
+        <p><a class="cta-button" href="https://ko-fi.com/brennanbrown" rel="noopener">Buy me a decaf ☕</a></p>
+      </section>
+    </aside>
+  </div>
+
+  
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#"><i class="fa-solid fa-user"></i>About</a>
+        <a href="#"><i class="fa-solid fa-book"></i>Books</a>
+        <a href="#"><i class="fa-solid fa-envelope"></i>Contact</a>
+        <a href="#"><i class="fa-solid fa-box-archive"></i>Archive</a>
+        <a href="#"><i class="fa-solid fa-shuffle"></i>Random</a>
+      </nav>
+      <div class="footer-copy">
+        <p>© 2025 Foothills Preview. Built with <a href="https://github.com/brennanbrown/foothills">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca">Brennan Kenneth Brown</a>.</p>
+      </div>
+      <div class="footer-seo">
+        <p>Foothills is a warm, accessible Tumblr theme for poets and community builders—handmade typography, generous spacing, and reblog trails that highlight conversation.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="drawer" class="drawer" aria-hidden="true" hidden>
+    <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
+      <button class="drawer-close" aria-label="Close menu">✕</button>
+      <nav class="drawer-nav" aria-label="Primary">
+        <a href="#"><i class="fa-solid fa-book"></i> Books</a>
+        <a href="#"><i class="fa-solid fa-envelope"></i> Contact</a>
+        <a href="#"><i class="fa-regular fa-circle-question"></i> Ask</a>
+        <a href="#"><i class="fa-regular fa-paper-plane"></i> Submit</a>
+        <a href="#"><i class="fa-solid fa-shuffle"></i> Random</a>
+        <a href="#"><i class="fa-solid fa-box-archive"></i> Archive</a>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    // Mirror drawer behavior from theme
+    (function() {
+      var btn = document.querySelector('.menu-toggle');
+      var drawer = document.getElementById('drawer');
+      var closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
+      if (!btn || !drawer || !closeBtn) return;
+      function openDrawer() {
+        drawer.hidden = false;
+        drawer.setAttribute('aria-hidden', 'false');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('drawer-open');
+        closeBtn.focus();
+      }
+      function closeDrawer() {
+        drawer.setAttribute('aria-hidden', 'true');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('drawer-open');
+        setTimeout(function(){ drawer.hidden = true; }, 250);
+        btn.focus();
+      }
+      btn.addEventListener('click', function(){
+        if (drawer.getAttribute('aria-hidden') === 'true') openDrawer(); else closeDrawer();
+      });
+      closeBtn.addEventListener('click', closeDrawer);
+      drawer.addEventListener('click', function(e){ if (e.target === drawer) closeDrawer(); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDrawer(); });
+    })();
+
+    // Palette toggle for preview: same behavior as theme
+    (function() {
+      var palettes = ["Prairie", "River", "Night", "Burnt"]; 
+      var root = document.body;
+      var btns = document.querySelectorAll('.palette-toggle');
+      function setPalette(p) {
+        root.setAttribute('data-palette', p);
+        try { localStorage.setItem('foothills_palette', p); } catch (e) {}
+      }
+      function nextPalette() {
+        var current = root.getAttribute('data-palette') || palettes[0];
+        var idx = palettes.indexOf(current);
+        var next = palettes[(idx + 1) % palettes.length];
+        setPalette(next);
+      }
+      try {
+        var saved = localStorage.getItem('foothills_palette');
+        if (saved && palettes.indexOf(saved) !== -1) setPalette(saved);
+      } catch (e) {}
+      btns.forEach(function(b){ b.addEventListener('click', nextPalette); });
+    })();
+
+    // Search overlay toggle (preview)
+    (function() {
+      // put search icon next to palette button in nav for preview
+      var nav = document.querySelector('.main-nav');
+      if (nav && !nav.querySelector('.search-toggle')) {
+        var btn = document.createElement('button');
+        btn.className = 'search-toggle palette-toggle';
+        btn.setAttribute('aria-label','Search');
+        btn.title = 'Search';
+        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>';
+        nav.appendChild(btn);
+      }
+      var overlay = document.getElementById('search-overlay');
+      var openers = document.querySelectorAll('.search-toggle');
+      var closeBtn = overlay ? overlay.querySelector('.search-close') : null;
+      var input = overlay ? overlay.querySelector('.search-input') : null;
+      if (!overlay || !closeBtn || !input) return;
+      function open() { overlay.hidden = false; overlay.setAttribute('aria-hidden','false'); setTimeout(function(){ input.focus(); }, 0); }
+      function close() { overlay.setAttribute('aria-hidden','true'); setTimeout(function(){ overlay.hidden = true; }, 200); }
+      openers.forEach(function(b){ b.addEventListener('click', open); });
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+    })();
+  </script>
+</body>
+</html>
