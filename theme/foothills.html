@@ -1,0 +1,705 @@
+  <!-- Generic CTA (replaces Write Club) -->
+  <meta name="text:CTA Section Title" content="Community">
+  <meta name="text:CTA Blurb" content="Weekly gatherings for emerging writers in Calgary. Bring your drafts and kindness.">
+  <meta name="text:CTA Link URL" content="/tagged/community">
+  <meta name="text:CTA Link Label" content="See our community →">
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  _____           _   _     _ _ _        _                             
+ |  ___|__   ___ | |_| |__ (_) | |___   | |__  _   _                   
+ | |_ / _ \ / _ \| __| '_ \| | | / __|  | '_ \| | | |                  
+ |  _| (_) | (_) | |_| | | | | | \__ \  | |_) | |_| |                  
+ |_|__\___/ \___/ \__|_| |_|_|_|_|___/  |_.__/ \__, |                  
+ | __ ) _ __ ___ _ __  _ __   __ _ _ __        |___/                   
+ |  _ \| '__/ _ \ '_ \| '_ \ / _` | '_ \                              
+ | |_) | | |  __/ | | | | | | (_| | | | |                             
+ |____/|_|  \___|_| |_|_| |_|\__,_|_| |_|                             
+  _  __                     _   _       ____                          
+ | |/ /___ _ __  _ __   ___| |_| |__   | __ ) _ __ _____      ___ __  
+ | ' // _ \ '_ \| '_ \ / _ \ __| '_ \  |  _ \| '__/ _ \ \ /\ / / '_ \ 
+ | . \  __/ | | | | | |  __/ |_| | | | | |_) | | | (_) \ V  V /| | | |
+ |_|\_\___|_| |_|_| |_|\___|\__|_| |_| |____/|_|  \___/ \_/\_/ |_| |_|
+                                                                      
+ 
+ 
+ -->
+
+<!--
+  Foothills Theme – Quick Start (see GUIDE.md for full docs)
+  1) Paste this entire file into Tumblr → Customize → Edit HTML → Save.
+  2) Set Theme Options (colors, fonts, nav links, social URLs, toggles).
+  3) Optional: Set “External Stylesheet URL” to your hosted assets/foothills.css.
+  4) Choose a Color Palette; use the palette icon in the header to cycle.
+  5) Mobile drawer shows a compact iconified nav; sidebar content stays on page.
+  Full instructions: docs/GUIDE.md
+-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{Title}{block:PostTitle} — {PostTitle}{/block:PostTitle}</title>
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  <link rel="icon" href="{Favicon}">
+  {block:Description}
+  <meta name="description" content="{MetaDescription}">
+  {/block:Description}
+
+  <!-- Theme Options -->
+  <!-- Colors -->
+  <meta name="color:Accent Color" content="#D2691E">
+  <meta name="color:Link Color" content="#B8860B">
+  <meta name="color:Background" content="#FFFEF7">
+  <meta name="color:Text" content="#2F2F2F">
+
+  <!-- Fonts -->
+  <meta name="font:Poetry Font" content="Georgia, serif">
+  <meta name="font:Headers Font" content=""/>
+  <meta name="font:Body Font" content=""/>
+  <meta name="font:UI Font" content=""/>
+
+  <!-- Toggles -->
+  <meta name="if:Show Calendly CTA" content="1">
+  <meta name="if:Show Current Reading" content="1">
+  <meta name="if:Enable Poetry Special Formatting" content="1">
+  <meta name="if:Use Chota CSS" content="0">
+
+  <!-- Text fields -->
+  <meta name="text:Calendly Link" content="">
+  <meta name="text:Substack Embed Code" content="">
+  <meta name="text:Email Address" content="mail@brennanbrown.ca">
+  <meta name="text:Write Club Description" content="">
+  <meta name="text:Current Reading" content="">
+  <meta name="text:Instagram Handle" content="">
+  <meta name="text:Twitter Handle" content="">
+  <meta name="text:Instagram URL" content="">
+  <meta name="text:Bluesky URL" content="">
+  <meta name="text:Goodreads URL" content="">
+  <meta name="text:Twitter URL" content="">
+  <meta name="text:AO3 URL" content="">
+  <meta name="text:External Stylesheet URL" content="">
+  <meta name="text:Footer SEO Blurb" content="Foothills is a warm, accessible Tumblr theme for poets and community builders—handmade typography, generous spacing, and reblog trails that highlight conversation.">
+
+  <!-- Donate / Support -->
+  <meta name="if:Show Donate" content="1">
+  <meta name="text:Donate Service" content="Ko-fi">
+  <meta name="text:Donate URL" content="https://ko-fi.com/brennanbrown">
+  <meta name="text:Donate Button Label" content="Buy me a decaf ☕">
+  <meta name="text:Donate Blurb" content="If you enjoy this work, consider supporting—every small kindness helps the community grow.">
+
+  <!-- Color Palette select (one-click palettes) -->
+  <meta name="select:Color Palette" content="Prairie" title="Prairie (light)">
+  <meta name="select:Color Palette" content="River" title="River (light, cool)">
+  <meta name="select:Color Palette" content="Night" title="Night Sky (dark)">
+  <meta name="select:Color Palette" content="Burnt" title="Burnt Umber (dark, warm)">
+
+  <!-- Blogroll (1 shown; copy pattern up to 10 in Customizer) -->
+  <meta name="text:Blogroll Link 1 URL" content="">
+  <meta name="text:Blogroll Link 1 Title" content="">
+  <meta name="text:Blogroll Link 1 Description" content="">
+  <meta name="text:Blogroll Link 2 URL" content="">
+  <meta name="text:Blogroll Link 2 Title" content="">
+  <meta name="text:Blogroll Link 2 Description" content="">
+  <meta name="text:Blogroll Link 3 URL" content="">
+  <meta name="text:Blogroll Link 3 Title" content="">
+  <meta name="text:Blogroll Link 3 Description" content="">
+  <meta name="text:Blogroll Link 4 URL" content="">
+  <meta name="text:Blogroll Link 4 Title" content="">
+  <meta name="text:Blogroll Link 4 Description" content="">
+  <meta name="text:Blogroll Link 5 URL" content="">
+  <meta name="text:Blogroll Link 5 Title" content="">
+  <meta name="text:Blogroll Link 5 Description" content="">
+
+  <!-- Header navigation (configurable links) -->
+  <meta name="text:Nav Link 1 Label" content="About">
+  <meta name="text:Nav Link 1 URL" content="/about">
+  <meta name="text:Nav Link 2 Label" content="Books">
+  <meta name="text:Nav Link 2 URL" content="/books">
+  <meta name="text:Nav Link 3 Label" content="Contact">
+  <meta name="text:Nav Link 3 URL" content="/contact">
+  <meta name="text:Nav Link 4 Label" content="">
+  <meta name="text:Nav Link 4 URL" content="">
+  <meta name="text:Nav Link 5 Label" content="">
+  <meta name="text:Nav Link 5 URL" content="">
+
+  <!-- Optional framework: Chota CSS -->
+  {block:IfUseChotaCSS}
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
+  {/block:IfUseChotaCSS}
+
+  <!-- Icons: Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- External stylesheet hook (recommended). Use a GitHub raw URL or Tumblr static asset URL) -->
+  {block:IfExternalStylesheetURL}
+    <link id="foothills-css" rel="stylesheet" href="{text:External Stylesheet URL}">
+  {/block:IfExternalStylesheetURL}
+
+  <!-- CSS variable bridge: lets external CSS reference Tumblr theme options via var(--token) -->
+  <style>
+    :root {
+      --bg: {color:Background};
+      --text: {color:Text};
+      --accent: {color:Accent Color};
+      --link: {color:Link Color};
+      --font-poetry: {font:Poetry Font};
+      --font-headers: {font:Headers Font};
+      --font-body: {font:Body Font};
+      --font-ui: {font:UI Font};
+    }
+
+    /* Minimal safety net if external CSS fails to load */
+    html { background: var(--bg); color: var(--text); }
+    body { margin: 0; font-family: var(--font-body, ui-serif, Georgia, serif); line-height: 1.6; }
+    a { color: var(--link); }
+    a:hover { color: var(--accent); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+    .site-header { position: sticky; top: 0; background: color-mix(in oklab, var(--bg) 90%, var(--accent) 10%); border-bottom: 1px solid rgba(0,0,0,.08); z-index: 100; }
+    .header-content { display: flex; gap: 1rem; align-items: center; justify-content: flex-start; padding: .75rem 1rem; flex-wrap: nowrap; }
+    .site-title { margin: 0; flex: 0 0 auto; }
+    .main-nav { display: flex; gap: .75rem; flex-wrap: wrap; margin-left: 1.25rem; flex: 1 1 auto; align-items: center; }
+    .menu-toggle { display: none; }
+    .featured-tags { display: flex; flex-wrap: wrap; gap: .4rem; padding: .5rem 0 0.75rem; }
+    .tag-chip { display: inline-block; padding: .25rem .5rem; border-radius: 999px; border: 1px solid rgba(0,0,0,.08); background: #fff; text-decoration: none; color: inherit; }
+    .drawer { position: fixed; inset: 0; background: rgba(0,0,0,.35); display: grid; place-items: stretch; z-index: 1000; }
+    .drawer-inner { margin-left: auto; width: min(92vw, 360px); background: var(--bg); height: 100%; padding: 1rem; box-shadow: -8px 0 24px rgba(0,0,0,.2); transform: translateX(0); }
+    .drawer-close { background: transparent; border: 0; font-size: 1.25rem; }
+    body.drawer-open { overflow: hidden; }
+    .content-wrapper { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; }
+    @media (max-width: 767px) {
+      .content-wrapper { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main-nav { display: none; }
+      .menu-toggle { display: inline-flex; align-items: center; gap: .5rem; }
+    }
+  </style>
+
+  {CustomCSS}
+</head>
+<body class="foothills" data-palette="{select:Color Palette}">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-content">
+      <h1 class="site-title" style="font-family: var(--font-headers, var(--font-body));">
+        <a href="/" rel="home">{Title}</a>
+      </h1>
+      <nav class="main-nav" aria-label="Primary">
+        {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-user"></i>{text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
+        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i>{text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
+        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i>{text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
+        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i>{text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
+        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i>{text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
+        {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i>{AskLabel}</a>{/block:AskEnabled}
+        {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i>{SubmitLabel}</a>{/block:SubmissionsEnabled}
+        <a href="/random"><i class="fa-solid fa-shuffle"></i>{lang:Random}</a>
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i>{lang:Archive}</a>
+        <button class="palette-toggle" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i></button>
+        <button class="search-toggle" type="button" aria-label="{lang:Search}" title="{lang:Search}"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+      </nav>
+      <div class="header-actions">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="{lang:Menu}">☰ {lang:Menu}</button>
+      </div>
+    </div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true" hidden>
+    <div class="search-overlay-inner" role="dialog" aria-modal="true" aria-label="{lang:Search}">
+      <form class="search-form" action="/search" method="get">
+        <input class="search-input" type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}" aria-label="{lang:Search}">
+        <button class="search-button" type="submit">{lang:Search}</button>
+      </form>
+      <button class="search-close" aria-label="{lang:Close}">✕</button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer: combines nav + sidebar on small screens -->
+  <div id="drawer" class="drawer" aria-hidden="true" hidden>
+    <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
+      <button class="drawer-close" aria-label="Close menu">✕</button>
+      <nav class="drawer-nav" aria-label="Primary">
+        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
+        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i> {text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
+        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
+        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i> {text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
+        {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i> {AskLabel}</a>{/block:AskEnabled}
+        {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i> {SubmitLabel}</a>{/block:SubmissionsEnabled}
+        <a href="/random"><i class="fa-solid fa-shuffle"></i> {lang:Random}</a>
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
+      </nav>
+    </div>
+  </div>
+  </header>
+
+  
+
+  <!-- Hero (index only) -->
+  {block:IndexPage}
+  <section class="hero-section" role="region" aria-label="Introduction">
+    <div class="container hero-content">
+      <div class="hero-inner">
+        <h2 class="hero-greeting" style="font-family: var(--font-headers, var(--font-body));">Hey there! I'm Kenny.</h2>
+        <p class="hero-intro">
+          I believe every voice deserves to be heard—especially the ones that have been overlooked.
+          As the founder of Write Club, I work with emerging writers to find their truth and power through storytelling.
+        </p>
+        {block:IfShowCalendlyCTA}
+          <div class="cta-container">
+            <p class="cta-text">Working on something and need a writing buddy?</p>
+            <a href="{text:Calendly Link}" class="cta-button" rel="noopener">Let's chat over decaf ☕</a>
+          </div>
+        {/block:IfShowCalendlyCTA}
+      </div>
+    </div>
+  </section>
+  {/block:IndexPage}
+
+  <!-- Search / Main layout -->
+  {block:SearchPage}
+    <section class="search-panel" aria-label="Search">
+      <div class="container">
+        <p class="search-meta">{SearchResultCount} {lang:Search results}</p>
+        {block:NoSearchResults}
+          <p class="no-results">{lang:No results found}</p>
+        {/block:NoSearchResults}
+      </div>
+    </section>
+  {/block:SearchPage}
+
+  <!-- Main layout -->
+  <div class="container content-wrapper">
+    <main id="main" class="posts-container" tabindex="-1">
+      {block:Posts}
+        <article class="post {PostType} {TagsAsClasses}" data-post-id="{PostID}">
+          <!-- Text & NPF posts -->
+          {block:Text}
+            <div class="post-content text-post">
+              {block:Title}
+                <h2 class="post-title"><a href="{Permalink}">{Title}</a></h2>
+              {/block:Title}
+
+              <!-- Original content -->
+              {block:NotReblog}
+                <div class="post-body {block:IfEnablePoetrySpecialFormatting}poetry-formatting{/block:IfEnablePoetrySpecialFormatting}">
+                  {Body}
+                </div>
+              {/block:NotReblog}
+
+              <!-- Reblog trail -->
+              {block:RebloggedFrom}
+                <div class="reblog-trail">
+                  {block:Reblogs}
+                    <div class="reblog-item">
+                      <div class="reblog-header">
+                        {block:IsActive}
+                          <a href="{Permalink}" class="reblog-username">{Username}</a>
+                        {/block:IsActive}
+                        {block:IsDeactivated}
+                          <span class="reblog-username deactivated">{Username}</span>
+                        {/block:IsDeactivated}
+                      </div>
+                      <div class="reblog-content">{Body}</div>
+                    </div>
+                  {/block:Reblogs}
+                </div>
+              {/block:RebloggedFrom}
+            </div>
+          {/block:Text}
+
+          <!-- Answer posts (includes NPF asks) -->
+          {block:Answer}
+            <div class="post-content answer-post">
+              <div class="question-container">
+                <div class="asker-info">
+                  <img src="{AskerPortraitURL-48}" alt="" class="asker-avatar" width="48" height="48">
+                  <p class="asker-name">{Asker} asked:</p>
+                </div>
+                <div class="question">{Question}</div>
+              </div>
+
+  
+              {block:Answerer}
+                <div class="answerer-response">
+                  <div class="answerer-info">
+                    <img src="{AnswererPortraitURL-48}" alt="" class="answerer-avatar" width="48" height="48">
+                    <p class="answerer-name">{Answerer}</p>
+                  </div>
+                  <div class="answer">{Answer}</div>
+                </div>
+              {/block:Answerer}
+
+              {block:NotReblog}
+                <div class="my-answer">{Replies}</div>
+              {/block:NotReblog}
+
+              {block:RebloggedFrom}
+                <div class="reblog-trail">
+                  {block:Reblogs}
+                    <div class="reblog-item">
+                      <div class="reblog-header">
+                        {block:IsActive}
+                          <a href="{Permalink}" class="reblog-username">{Username}</a>
+                        {/block:IsActive}
+                        {block:IsDeactivated}
+                          <span class="reblog-username deactivated">{Username}</span>
+                        {/block:IsDeactivated}
+                      </div>
+                      <div class="reblog-content">{Body}</div>
+                    </div>
+                  {/block:Reblogs}
+                </div>
+              {/block:RebloggedFrom}
+            </div>
+          {/block:Answer}
+
+          <!-- Legacy post types coverage -->
+          {block:Photo}
+            <div class="post-content photo-post">
+              {LinkOpenTag}
+                <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="{PhotoWidth-500}" height="{PhotoHeight-500}">
+              {LinkCloseTag}
+              {block:NotReblog}{Caption}{/block:NotReblog}
+              {block:RebloggedFrom}
+                <div class="reblog-trail">{block:Reblogs}<div class="reblog-content">{Body}</div>{/block:Reblogs}</div>
+              {/block:RebloggedFrom}
+            </div>
+          {/block:Photo}
+
+          {block:Photoset}
+            <div class="post-content photoset-post">
+              {Photoset}
+              {block:NotReblog}{Caption}{/block:NotReblog}
+            </div>
+          {/block:Photoset}
+
+          {block:Quote}
+            <div class="post-content quote-post">
+              <blockquote class="quote">“{Quote}”</blockquote>
+              {block:Source}<div class="source">{Source}</div>{/block:Source}
+            </div>
+          {/block:Quote}
+
+          {block:Link}
+            <div class="post-content link-post">
+              <a class="link" href="{URL}" {Target}>{Name}</a>
+              {block:Description}<div class="description">{Description}</div>{/block:Description}
+            </div>
+          {/block:Link}
+
+          {block:Chat}
+            <div class="post-content chat-post">
+              {block:Title}<h3 class="post-title"><a href="{Permalink}">{Title}</a></h3>{/block:Title}
+              <ul class="chat-lines">
+                {block:Lines}
+                  <li class="{Alt} user_{UserNumber}">{block:Label}<span class="label">{Label}</span> {/block:Label}{Line}</li>
+                {/block:Lines}
+              </ul>
+            </div>
+          {/block:Chat}
+
+          {block:Audio}
+            <div class="post-content audio-post">
+              {block:AudioPlayer}
+                <div class="audio-player">{AudioPlayer}</div>
+              {/block:AudioPlayer}
+              {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+            </div>
+          {/block:Audio}
+
+          {block:Video}
+            <div class="post-content video-post">
+              {Video-500}
+              {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+            </div>
+          {/block:Video}
+
+          <!-- Footer: meta/actions -->
+          <footer class="post-footer">
+            <div class="post-meta">
+              {block:Date}
+                <time datetime="{Timestamp}" class="post-date">
+                  <a href="{Permalink}">{DayOfWeek}, {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year} at {12Hour}:{Minutes}{CapitalAmPm}</a>
+                </time>
+              {/block:Date}
+              {block:HasTags}
+                <div class="post-tags" aria-label="Tags">
+                  {block:Tags}<a href="{TagURL}" class="tag">#{Tag}</a>{/block:Tags}
+                </div>
+              {/block:HasTags}
+              {block:NoteCount}<span class="note-count">{NoteCountWithLabel}</span>{/block:NoteCount}
+              {block:PinnedPostLabel}<span class="pinned">{PinnedPostLabel}</span>{/block:PinnedPostLabel}
+            </div>
+            <div class="post-actions">
+              {block:ReblogURL}
+                <a class="btn-action" href="{ReblogURL}" aria-label="Reblog"><i class="fa-solid fa-retweet"></i></a>
+              {/block:ReblogURL}
+              <span class="like-wrapper" aria-label="Like">
+                <i class="fa-regular fa-heart"></i>
+                {LikeButton color="grey" size="28"}
+              </span>
+            </div>
+          </footer>
+
+          {block:PermalinkPage}
+            {block:PostNotes}
+              <section class="post-notes" aria-label="Notes">
+                {PostNotes}
+              </section>
+            {/block:PostNotes}
+
+            {block:RelatedPosts}
+              <section class="related-posts" aria-label="Related posts">
+                <h3 class="related-title">{lang:Related posts}</h3>
+                <div class="related-grid">
+                  {block:Posts}
+                    <article class="related-card">
+                      <a href="{Permalink}">
+                        {block:Title}{Title}{/block:Title}
+                        {block:Photo}<span>{lang:Photo}</span>{/block:Photo}
+                        {block:Quote}<span>“{PlaintextQuote}”</span>{/block:Quote}
+                      </a>
+                    </article>
+                  {/block:Posts}
+                </div>
+              </section>
+            {/block:RelatedPosts}
+          {/block:PermalinkPage}
+        </article>
+      {/block:Posts}
+
+      <!-- Pagination -->
+      <nav class="pagination" role="navigation" aria-label="Pagination">
+        {block:Pagination}
+          {block:PreviousPage}
+            <a href="{PreviousPage}" class="prev-page" rel="prev">← Newer posts</a>
+          {/block:PreviousPage}
+
+          {block:JumpPagination length="5"}
+            {block:CurrentPage}
+              <span class="current-page">{PageNumber}</span>
+            {/block:CurrentPage}
+            {block:JumpPage}
+              <a href="{URL}" class="jump-page">{PageNumber}</a>
+            {/block:JumpPage}
+          {/block:JumpPagination}
+
+          {block:NextPage}
+            <a href="{NextPage}" class="next-page" rel="next">Older posts →</a>
+          {/block:NextPage}
+        {/block:Pagination}
+      </nav>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" role="complementary">
+      <!-- About -->
+      <section class="about-widget card">
+        <h3>About Kenny</h3>
+        <div class="about-photo">
+          {block:ShowAvatar}
+            <img src="{PortraitURL-128}" alt="{Title} avatar" width="128" height="128">
+          {/block:ShowAvatar}
+        </div>
+        {block:Description}
+          <div class="about-text">{Description}</div>
+        {/block:Description}
+        {block:IfShowCurrentReading}
+          <p class="currently-reading"><strong>Currently:</strong> {text:Current Reading}</p>
+        {/block:IfShowCurrentReading}
+      </section>
+
+      <!-- Social Links -->
+      <section class="social-widget card">
+        <h3>Connect</h3>
+        <nav class="social-links" aria-label="Social links">
+          <a href="mailto:{text:Email Address}"><i class="fa-regular fa-envelope"></i>Email</a>
+          {block:IfInstagramURL}<a href="{text:Instagram URL}"><i class="fa-brands fa-instagram"></i>Instagram</a>{/block:IfInstagramURL}
+          {block:IfNotInstagramURL}{block:IfInstagramHandle}<a href="https://instagram.com/{text:Instagram Handle}"><i class="fa-brands fa-instagram"></i>Instagram</a>{/block:IfInstagramHandle}{/block:IfNotInstagramURL}
+          {block:IfBlueskyURL}<a href="{text:Bluesky URL}"><i class="fa-solid fa-cloud"></i>Bluesky</a>{/block:IfBlueskyURL}
+          {block:IfGoodreadsURL}<a href="{text:Goodreads URL}"><i class="fa-solid fa-book-open"></i>Goodreads</a>{/block:IfGoodreadsURL}
+          <a href="{RSS}"><i class="fa-solid fa-square-rss"></i>RSS</a>
+          {block:IfTwitterURL}<a href="{text:Twitter URL}"><i class="fa-brands fa-x-twitter"></i>Twitter</a>{/block:IfTwitterURL}
+          {block:IfAO3URL}<a href="{text:AO3 URL}"><i class="fa-solid fa-feather-pointed"></i>AO3</a>{/block:IfAO3URL}
+        </nav>
+      </section>
+
+      <!-- Substack Embed -->
+      {block:IfSubstackEmbedCode}
+        <section class="substack-widget card">
+          <h3>Newsletter</h3>
+          {text:Substack Embed Code}
+        </section>
+      {/block:IfSubstackEmbedCode}
+
+      <!-- Blogroll -->
+      <section class="blogroll-widget card">
+        <h3>Fellow Writers</h3>
+        <ul class="blogroll">
+          {block:IfBlogrollLink1URL}
+            <li>
+              <a href="{text:Blogroll Link 1 URL}">{text:Blogroll Link 1 Title}</a>
+              <span class="blogroll-description">{text:Blogroll Link 1 Description}</span>
+            </li>
+          {/block:IfBlogrollLink1URL}
+          {block:IfBlogrollLink2URL}
+            <li>
+              <a href="{text:Blogroll Link 2 URL}">{text:Blogroll Link 2 Title}</a>
+              <span class="blogroll-description">{text:Blogroll Link 2 Description}</span>
+            </li>
+          {/block:IfBlogrollLink2URL}
+          {block:IfBlogrollLink3URL}
+            <li>
+              <a href="{text:Blogroll Link 3 URL}">{text:Blogroll Link 3 Title}</a>
+              <span class="blogroll-description">{text:Blogroll Link 3 Description}</span>
+            </li>
+          {/block:IfBlogrollLink3URL}
+          {block:IfBlogrollLink4URL}
+            <li>
+              <a href="{text:Blogroll Link 4 URL}">{text:Blogroll Link 4 Title}</a>
+              <span class="blogroll-description">{text:Blogroll Link 4 Description}</span>
+            </li>
+          {/block:IfBlogrollLink4URL}
+          {block:IfBlogrollLink5URL}
+            <li>
+              <a href="{text:Blogroll Link 5 URL}">{text:Blogroll Link 5 Title}</a>
+              <span class="blogroll-description">{text:Blogroll Link 5 Description}</span>
+            </li>
+          {/block:IfBlogrollLink5URL}
+        </ul>
+      </section>
+
+      <!-- Generic CTA -->
+      <section class="cta-widget card">
+        <h3>{text:CTA Section Title}</h3>
+        <p>{text:CTA Blurb}</p>
+        <a href="{text:CTA Link URL}" class="write-club-link">{text:CTA Link Label}</a>
+      </section>
+
+      <!-- Donate / Support -->
+      {block:IfShowDonate}
+      <section class="donate-widget card">
+        <h3>Support</h3>
+        <p>{text:Donate Blurb}</p>
+        <p><a class="cta-button" href="{text:Donate URL}" rel="noopener">{text:Donate Button Label}</a></p>
+      </section>
+      {/block:IfShowDonate}
+    </aside>
+  </div>
+
+  
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-user"></i>{text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
+        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i>{text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
+        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i>{text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
+        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i>{text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
+        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i>{text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i>Archive</a>
+        <a href="/random"><i class="fa-solid fa-shuffle"></i>Random</a>
+      </nav>
+      <div class="footer-copy">
+        <p>© {CopyrightYears} {Title}. Built with <a href="https://github.com/brennanbrown/foothills" rel="noopener">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca" rel="noopener">Brennan Kenneth Brown</a>.</p>
+      </div>
+      <div class="footer-seo">
+        <p>{text:Footer SEO Blurb}</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Enhancements -->
+  <script>
+    // Tag-based poetry formatting for posts tagged #poetry or #poem
+    document.addEventListener('DOMContentLoaded', function () {
+      var posts = document.querySelectorAll('.post');
+      posts.forEach(function (post) {
+        var tags = post.querySelector('.post-tags');
+        var body = post.querySelector('.post-body');
+        if (!tags || !body) return;
+        var t = tags.textContent.toLowerCase();
+        if (t.includes('#poetry') || t.includes('#poem')) {
+          body.classList.add('poetry-formatting');
+        }
+      });
+    });
+
+    // Mobile drawer toggle
+    (function() {
+      var btn = document.querySelector('.menu-toggle');
+      var drawer = document.getElementById('drawer');
+      var closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
+      if (!btn || !drawer || !closeBtn) return;
+
+      function openDrawer() {
+        drawer.hidden = false;
+        drawer.setAttribute('aria-hidden', 'false');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('drawer-open');
+        closeBtn.focus();
+      }
+      function closeDrawer() {
+        drawer.setAttribute('aria-hidden', 'true');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('drawer-open');
+        // Use a small timeout to allow CSS transition to complete before hiding
+        setTimeout(function(){ drawer.hidden = true; }, 250);
+        btn.focus();
+      }
+      btn.addEventListener('click', function(){
+        if (drawer.getAttribute('aria-hidden') === 'true') openDrawer(); else closeDrawer();
+      });
+      closeBtn.addEventListener('click', closeDrawer);
+      drawer.addEventListener('click', function(e){ if (e.target === drawer) closeDrawer(); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDrawer(); });
+    })();
+
+    // Palette toggle: cycles between predefined palettes and stores preference
+    (function() {
+      var palettes = ["Prairie", "River", "Night", "Burnt"]; // must match Theme Options
+      var root = document.body;
+      var btns = document.querySelectorAll('.palette-toggle');
+      function setPalette(p) {
+        root.setAttribute('data-palette', p);
+        try { localStorage.setItem('foothills_palette', p); } catch (e) {}
+      }
+      function nextPalette() {
+        var current = root.getAttribute('data-palette') || palettes[0];
+        var idx = palettes.indexOf(current);
+        var next = palettes[(idx + 1) % palettes.length];
+        setPalette(next);
+      }
+      // Expose globally so inline onclick can trigger even if listeners fail
+      window.foothillsNextPalette = nextPalette;
+      // Load saved palette if present
+      try {
+        var saved = localStorage.getItem('foothills_palette');
+        if (saved && palettes.indexOf(saved) !== -1) setPalette(saved);
+      } catch (e) {}
+      btns.forEach(function(b){ b.addEventListener('click', nextPalette); });
+    })();
+
+    // Search overlay toggle
+    (function() {
+      var overlay = document.getElementById('search-overlay');
+      var openers = document.querySelectorAll('.search-toggle');
+      var closeBtn = overlay ? overlay.querySelector('.search-close') : null;
+      var input = overlay ? overlay.querySelector('.search-input') : null;
+      if (!overlay || !closeBtn || !input) return;
+      function open() {
+        overlay.hidden = false; overlay.setAttribute('aria-hidden','false');
+        setTimeout(function(){ input.focus(); }, 0);
+      }
+      function close() {
+        overlay.setAttribute('aria-hidden','true'); setTimeout(function(){ overlay.hidden = true; }, 200);
+      }
+      openers.forEach(function(b){ b.addEventListener('click', open); });
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+    })();
+  </script>
+</body>
+</html>
