@@ -225,6 +225,13 @@ body[data-palette="Burnt"] {
 .about-widget .currently-reading strong { font-weight: 600; font-style: italic; }
 .write-club-link { text-decoration: none; color: var(--accent); font-weight: 600; }
 .write-club-link:hover { text-decoration: underline; }
+/* Substack embed: force responsive layout inside card */
+.substack-widget { overflow: hidden; }
+.substack-widget img, .substack-widget iframe, .substack-widget .embed-page, .substack-widget .embed-page-inner, .substack-widget form, .substack-widget .container { max-width: 100% !important; width: 100% !important; }
+.substack-widget .publication-logo { width: 64px; height: auto; }
+.substack-widget .sideBySideWrap-vGXrwP { display: flex; flex-wrap: wrap; gap: .5rem; }
+.substack-widget .emailInputWrapper-QlA86j, .substack-widget .rightButton { flex: 1 1 auto; }
+.substack-widget .rightButton { min-width: 140px; }
 /* Center CTA in Support widget */
 .donate-widget { text-align: center; }
 .donate-widget .cta-button { margin-top: .5rem; }
@@ -270,7 +277,7 @@ body[data-palette="Burnt"] {
 .search-close:hover { background: var(--hover); }
 
 /* Poetry formatting */
-.poetry-formatting { line-height: 2; text-align: center; font-family: var(--font-poetry, var(--font-body)); max-width: 42ch; margin: 0 auto; }
+.poetry-formatting { line-height: 2; text-align: left; font-family: var(--font-poetry, var(--font-body)); max-width: 42ch; margin: 0 auto; }
 .poetry-formatting p { margin-bottom: 1.5em; }
 .poetry-formatting br { line-height: 2.5; }
 
