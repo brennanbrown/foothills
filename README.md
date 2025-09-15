@@ -26,7 +26,6 @@
   <a href="https://app.netlify.com/start/deploy?repository=https://github.com/brennanbrown/foothills"><img alt="Deploy to Netlify" src="https://www.netlify.com/img/deploy/button.svg"></a>
 </p>
 <p align="center">
-<a href="https://github.com/brennanbrown/foothills/actions"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/brennanbrown/foothills/ci.yml?branch=main"></a>
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/brennanbrown/foothills"> 
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/brennanbrown/foothills"> 
 <a href="https://github.com/brennanbrown/foothills/search?l=css"><img alt="Top language" src="https://img.shields.io/github/languages/top/brennanbrown/foothills"></a>
@@ -47,6 +46,17 @@ This repo contains:
 - `assets/foothills.css` — optional external stylesheet you can host and reference in Theme Options.
 - `docs/` — documentation and change history (`GUIDE.md`, `CHANGELOG.md`).
  - Optional demo hosting via Netlify.
+
+## Features
+
+- Mobile drawer with centered title, separators, palette toggle, and italic blurb
+- Theme palette system (Prairie, River, Night, Burnt) with one‑click cycling and persistence
+- SEO in head: canonical, Open Graph, Twitter Cards, theme‑color, optional JSON‑LD
+- Pinned post styling with accent top bar and `pinned-badge`
+- First‑class reblog trail support for NPF and legacy posts
+- Poetry formatting for originals and via tag detection (#poetry/#poem)
+- Sidebar widgets: About (with “Currently Reading”), Social grid, Substack, Blogroll, Donate
+- Accessibility basics: skip link, landmarks, keyboard‑friendly overlays
 
 ## Quick Start
 

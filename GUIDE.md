@@ -19,6 +19,12 @@ This document expands on the Quick Start note in `theme/foothills.html`. It expl
   - `Enable Poetry Special Formatting`
   - `Use Chota CSS`
   - `Show Donate`
+- SEO:
+  - `SEO Title Override`, `SEO Description Override`
+  - `OG Image URL` (1200×630 recommended)
+  - `Twitter Username` (without @)
+  - `Canonical URL`
+  - `Enable SEO JSON-LD`
 - Text fields:
   - `Email Address`
   - `Write Club Description`
@@ -37,7 +43,8 @@ This document expands on the Quick Start note in `theme/foothills.html`. It expl
 ## 4) Mobile Drawer
 
 - Compact, iconified nav showing Books, Contact, Ask, Submit, Random, Archive.
-- About/Connect live in the sidebar on mobile, so they’re omitted from the drawer.
+- Displays the blog title centered at the top with separators.
+- Includes a palette toggle styled like links; italic blurb under nav.
 - Drawer overlays the header. ESC, overlay click, and ✕ close it.
 
 ## 5) Posts
@@ -47,11 +54,13 @@ This document expands on the Quick Start note in `theme/foothills.html`. It expl
   - Reblog uses a Font Awesome retweet icon linking to `{ReblogURL}`.
   - Like overlays a Font Awesome heart on Tumblr’s `{LikeButton}` iframe for visuals while keeping functionality.
 - Quote styling is scoped to quote posts and won’t affect other metadata.
+- Pinned posts: add an accent top bar and a `pinned-badge` chip with `{PinnedPostLabel}`.
 
 ## 6) Featured Tags / Donate
 
 - Featured Tags render in the sidebar as chips when the blog has featured tags.
 - Donate widget (Ko‑fi by default): configured by `Show Donate`, `Donate URL`, `Donate Button Label`, `Donate Blurb`.
+- CTA buttons include subtle hover/press animations; text color is fixed to white on all states.
 
 ## 7) Assets and Icons
 
@@ -59,15 +68,16 @@ This document expands on the Quick Start note in `theme/foothills.html`. It expl
 - This theme uses Font Awesome from a CDN for convenience. For submission, replace with:
   - Uploaded SVG sprites, or
   - A Tumblr-hosted copy of the icon set.
+- Favicons: theme and preview include links to `/favicon/*` assets; Tumblr’s `{Favicon}` tag remains for blog compatibility.
 
 ## 8) Local Preview
 
 - Open `preview/index.html` in a static server from the repo root.
-- The preview mirrors the theme (hero, posts, sidebar, drawer, Featured Tags, Donate) and includes the palette toggle.
+- The preview mirrors the theme and includes the drawer palette toggle and favicons.
 
 ## 9) Dev Notes
 
-- CSS relies on variables: `--bg`, `--text`, `--accent`, `--link`, and font tokens.
+- CSS relies on variables: `--bg`, `--text`, `--accent`, `--link`, and font tokens. A unified `--hover` token controls hover backgrounds.
 - Keep new UI consistent by reusing the existing card and button patterns.
 - The mobile drawer is intentionally minimal to avoid duplicating sidebar content and to reduce complexity.
 
