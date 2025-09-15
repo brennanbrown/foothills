@@ -356,7 +356,7 @@
         <article class="post {PostType} {TagsAsClasses}{block:PinnedPost} pinned-post{/block:PinnedPost}" data-post-id="{PostID}">
           {block:PinnedPost}
             <div class="pinned-badge" aria-label="Pinned">
-              <i class="fa-solid fa-thumbtack" aria-hidden="true"></i>
+              <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
               <span>{PinnedPostLabel}</span>
             </div>
           {/block:PinnedPost}
@@ -369,7 +369,7 @@
 
               <!-- Original content -->
               {block:NotReblog}
-                <div class="post-body {block:IfEnablePoetrySpecialFormatting}poetry-formatting{/block:IfEnablePoetrySpecialFormatting}">
+                <div class="post-body">
                   {Body}
                 </div>
               {/block:NotReblog}
@@ -522,6 +522,11 @@
               {block:ReblogURL}
                 <a class="btn-action" href="{ReblogURL}" aria-label="Reblog"><i class="fa-solid fa-retweet"></i></a>
               {/block:ReblogURL}
+              {block:IfNotReblogURL}
+                <span class="reblog-fallback" aria-label="Reblog">
+                  {ReblogButton color="grey" size="28"}
+                </span>
+              {/block:IfNotReblogURL}
               <span class="like-wrapper" aria-label="Like">
                 <i class="fa-regular fa-heart"></i>
                 {LikeButton color="grey" size="28"}
@@ -544,8 +549,9 @@
                     <article class="related-card">
                       <a href="{Permalink}">
                         {block:Title}{Title}{/block:Title}
-                        {block:Photo}<span>{lang:Photo}</span>{/block:Photo}
-                        {block:Quote}<span>“{PlaintextQuote}”</span>{/block:Quote}
+                        {block:PlaintextCaption}<small class="related-snippet">{PlaintextCaption}</small>{/block:PlaintextCaption}
+                        {block:Quote}<small class="related-snippet">“{PlaintextQuote}”</small>{/block:Quote}
+                        {block:Photo}<small class="related-snippet">{lang:Photo}</small>{/block:Photo}
                       </a>
                     </article>
                   {/block:Posts}
@@ -690,7 +696,7 @@
         <a href="/random"><i class="fa-solid fa-shuffle"></i>Random</a>
       </nav>
       <div class="footer-copy">
-        <p>© {CopyrightYears} {Title}. Built with <a href="https://github.com/brennanbrown/foothills" rel="noopener">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca" rel="noopener">Brennan Kenneth Brown</a>.</p>
+        <p>© {CopyrightYears} {Title}.<br>Built with <a href="https://github.com/brennanbrown/foothills" rel="noopener">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca" rel="noopener">Brennan Kenneth Brown</a>.</p>
       </div>
       <div class="footer-seo">
         <p>{text:Footer SEO Blurb}</p>
@@ -700,7 +706,8 @@
 
   <!-- Enhancements -->
   <script>
-    // Tag-based poetry formatting for posts tagged #poetry or #poem
+    {block:IfEnablePoetrySpecialFormatting}
+    // Tag-based poetry formatting for posts tagged #poetry or #poem (respects theme toggle)
     document.addEventListener('DOMContentLoaded', function () {
       var posts = document.querySelectorAll('.post');
       posts.forEach(function (post) {
@@ -713,6 +720,7 @@
         }
       });
     });
+    {/block:IfEnablePoetrySpecialFormatting}
 
     // Mobile drawer toggle
     (function() {
