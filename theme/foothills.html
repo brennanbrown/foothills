@@ -36,11 +36,11 @@
   <title>{Title}{block:PostTitle} — {PostTitle}{/block:PostTitle}</title>
   <link rel="alternate" type="application/rss+xml" href="{RSS}">
   <link rel="icon" href="{Favicon}">
-  <!-- Favicons for demo/site hosting -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/favicon/site.webmanifest">
+  <!-- Optional favicon URLs (leave blank to use Tumblr's {Favicon}) -->
+  {block:IfAppleTouchIconURL}<link rel="apple-touch-icon" sizes="180x180" href="{text:Apple Touch Icon URL}">{/block:IfAppleTouchIconURL}
+  {block:IfFavicon32URL}<link rel="icon" type="image/png" sizes="32x32" href="{text:Favicon 32 URL}">{/block:IfFavicon32URL}
+  {block:IfFavicon16URL}<link rel="icon" type="image/png" sizes="16x16" href="{text:Favicon 16 URL}">{/block:IfFavicon16URL}
+  {block:IfWebmanifestURL}<link rel="manifest" href="{text:Webmanifest URL}">{/block:IfWebmanifestURL}
   {block:Description}
   <meta name="description" content="{MetaDescription}">
   {/block:Description}
@@ -87,6 +87,12 @@
   <meta name="text:AO3 URL" content="">
   <meta name="text:External Stylesheet URL" content="">
   <meta name="text:Footer SEO Blurb" content="Foothills is a warm, accessible Tumblr theme for poets and community builders—handmade typography, generous spacing, and reblog trails that highlight conversation.">
+
+  <!-- Optional favicon URL fields (for custom domains or external hosting) -->
+  <meta name="text:Apple Touch Icon URL" content="">
+  <meta name="text:Favicon 32 URL" content="">
+  <meta name="text:Favicon 16 URL" content="">
+  <meta name="text:Webmanifest URL" content="">
 
   <!-- Theme color for browsers (uses Accent Color) -->
   <meta name="theme-color" content="{color:Accent Color}">

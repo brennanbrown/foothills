@@ -25,6 +25,11 @@ This document expands on the Quick Start note in `theme/foothills.html`. It expl
   - `Twitter Username` (without @)
   - `Canonical URL`
   - `Enable SEO JSON-LD`
+- Favicons (optional; leave blank to rely on Tumblr `{Favicon}`):
+  - `Apple Touch Icon URL`
+  - `Favicon 32 URL`
+  - `Favicon 16 URL`
+  - `Webmanifest URL`
 - Text fields:
   - `Email Address`
   - `Write Club Description`
