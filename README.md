@@ -1,6 +1,46 @@
-# Foothills — A Tumblr Theme for Poetry & Community
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/brennanbrown/foothills">
+    <img src="favicon/android-chrome-512x512.png" alt="Foothills Logo" width="120" height="120">
+  </a>
 
-Foothills is a Tumblr theme designed for writers and community builders. It emphasizes breathable typography, warm colors, and first-class support for reblogs and poetry formatting.
+  <h3 align="center">Foothills — Tumblr Theme for Poetry & Community</h3>
+
+  <p align="center">
+    A warm, accessible Tumblr theme for writers and community builders.
+    <br />
+    <a href="docs/GUIDE.md"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <strong><a href="https://foothills-tumblr.netlify.app/preview/">View Demo</a></strong>
+    ·
+    <a href="https://github.com/brennanbrown/foothills/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/brennanbrown/foothills/issues">Request Feature</a>
+  </p>
+</p>
+
+<!-- BADGES -->
+<p align="center">
+  <a href="https://app.netlify.com/start/deploy?repository=https://github.com/brennanbrown/foothills"><img alt="Deploy to Netlify" src="https://www.netlify.com/img/deploy/button.svg"></a>
+</p>
+<p align="center">
+<a href="https://github.com/brennanbrown/foothills/actions"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/brennanbrown/foothills/ci.yml?branch=main"></a>
+<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/brennanbrown/foothills"> 
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/brennanbrown/foothills"> 
+<a href="https://github.com/brennanbrown/foothills/search?l=css"><img alt="Top language" src="https://img.shields.io/github/languages/top/brennanbrown/foothills"></a>
+<a href="https://github.com/brennanbrown/foothills/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/brennanbrown/foothills"></a> 
+<a href="https://github.com/brennanbrown/foothills/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/brennanbrown/foothills"></a>
+<a href="https://github.com/brennanbrown/foothills/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/brennanbrown/foothills"></a> 
+<br />
+<a href="https://github.com/brennanbrown?tab=followers"><img alt="Followers" src="https://img.shields.io/github/followers/brennanbrown?label=Follow%20Me%21&style=social"></a>
+<a href="https://github.com/brennanbrown/foothills/watchers"><img alt="Watchers" src="https://img.shields.io/github/watchers/brennanbrown/foothills?label=Watch%21&style=social"></a>
+<a href="https://github.com/brennanbrown/foothills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/brennanbrown/foothills?label=Star%21&style=social"> </a>
+<a href="https://github.com/brennanbrown/foothills/network/members"><img alt="Forks" src="https://img.shields.io/github/forks/brennanbrown/foothills?label=Fork%21&style=social"></a>
+</p>
+
+![Foothills screenshot](docs/screenshot.png)
 
 This repo contains:
 - `theme/foothills.html` — the complete single‑file Tumblr theme for Tumblr’s Custom HTML editor.
@@ -54,6 +94,14 @@ Note: Tumblr Theme Submission Guidelines require hosting assets on Tumblr's stat
   - `External Stylesheet URL`
   - Blogroll entries (x5)
 
+### SEO Options
+- `SEO Title Override`
+- `SEO Description Override`
+- `OG Image URL` (preferably 1200×630)
+- `Twitter Username` (without @)
+- `Canonical URL`
+- `Enable SEO JSON-LD` (adds a simple Blog schema)
+
 ## Structure
 
 - Header with nav: About, Books, Contact, Ask, Submit, Random, Archive (icons)
@@ -67,6 +115,19 @@ Note: Tumblr Theme Submission Guidelines require hosting assets on Tumblr's stat
 
 If `Enable Poetry Special Formatting` is on, `.post-body` for original text posts applies `.poetry-formatting` styles. Additionally, any post tagged `#poetry` or `#poem` gets the class via a small script, improving display on reblogs too.
 
+## Pinned Posts
+
+Pinned posts receive a subtle highlight so an intro post stands out:
+
+- Adds `pinned-post` class with an accent top bar
+- Renders a small `pinned-badge` chip with a thumbtack and `{PinnedPostLabel}`
+
+## Mobile Drawer & Hover Improvements
+
+- Drawer shows blog title, separators, the primary nav, and a small italic blurb
+- Palette toggle appears inside the drawer and matches nav item styling
+- Hover background uses a unified `--hover` token across light/dark palettes
+
 ## Live Demo
 
 View the theme demo on Netlify:
@@ -78,7 +139,7 @@ Netlify builds serve the `/preview/` page and load `../assets/foothills.css` dir
 ## Documentation & Changes
 
 - Full guide: [`docs/GUIDE.md`](docs/GUIDE.md)
-- Changelog: [`docs/CHANGELOG.md`](docs/CHANGELOG.md)
+- Changelog: [`CHANGELOG.md`](CHANGELOG.md)
 
 ## Development Notes
 
