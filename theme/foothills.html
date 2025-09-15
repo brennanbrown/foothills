@@ -1,8 +1,3 @@
-  <!-- Generic CTA (replaces Write Club) -->
-  <meta name="text:CTA Section Title" content="Community">
-  <meta name="text:CTA Blurb" content="Weekly gatherings for emerging writers in Calgary. Bring your drafts and kindness.">
-  <meta name="text:CTA Link URL" content="/tagged/community">
-  <meta name="text:CTA Link Label" content="See our community →">
 <!DOCTYPE html>
 <html lang="en">
 <!--
@@ -41,9 +36,22 @@
   <title>{Title}{block:PostTitle} — {PostTitle}{/block:PostTitle}</title>
   <link rel="alternate" type="application/rss+xml" href="{RSS}">
   <link rel="icon" href="{Favicon}">
+  <!-- Favicons for demo/site hosting -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
   {block:Description}
   <meta name="description" content="{MetaDescription}">
   {/block:Description}
+
+  <!-- SEO Options (user-configurable) -->
+  <meta name="if:Enable SEO JSON-LD" content="1">
+  <meta name="text:SEO Title Override" content="">
+  <meta name="text:SEO Description Override" content="">
+  <meta name="text:OG Image URL" content="">
+  <meta name="text:Twitter Username" content="">
+  <meta name="text:Canonical URL" content="">
 
   <!-- Theme Options -->
   <!-- Colors -->
@@ -79,6 +87,69 @@
   <meta name="text:AO3 URL" content="">
   <meta name="text:External Stylesheet URL" content="">
   <meta name="text:Footer SEO Blurb" content="Foothills is a warm, accessible Tumblr theme for poets and community builders—handmade typography, generous spacing, and reblog trails that highlight conversation.">
+
+  <!-- Theme color for browsers (uses Accent Color) -->
+  <meta name="theme-color" content="{color:Accent Color}">
+
+  <!-- Canonical URL -->
+  {block:IndexPage}
+    {block:IfCanonicalURL}<link rel="canonical" href="{text:Canonical URL}">{/block:IfCanonicalURL}
+    {block:IfNotCanonicalURL}<link rel="canonical" href="{BlogURL}">{/block:IfNotCanonicalURL}
+  {/block:IndexPage}
+  {block:PermalinkPage}
+    <link rel="canonical" href="{Permalink}">
+  {/block:PermalinkPage}
+
+  <!-- Open Graph (Facebook, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{Title}">
+  <meta property="og:title" content="{Title}{block:PostTitle} — {PostTitle}{/block:PostTitle}">
+  {block:IfSEOTitleOverride}<meta property="og:title" content="{text:SEO Title Override}">{/block:IfSEOTitleOverride}
+  <meta property="og:description" content="{MetaDescription}">
+  {block:IfSEODescriptionOverride}<meta property="og:description" content="{text:SEO Description Override}">{/block:IfSEODescriptionOverride}
+  <meta property="og:url" content="{block:PermalinkPage}{Permalink}{/block:PermalinkPage}{block:IndexPage}{BlogURL}{/block:IndexPage}">
+  <!-- Image: user override, else avatar portrait -->
+  {block:IfOGImageURL}
+    <meta property="og:image" content="{text:OG Image URL}">
+  {/block:IfOGImageURL}
+  {block:IfNotOGImageURL}
+    <meta property="og:image" content="{PortraitURL-128}">
+  {/block:IfNotOGImageURL}
+
+  <!-- Twitter Cards -->
+  {block:IfOGImageURL}<meta name="twitter:card" content="summary_large_image">{/block:IfOGImageURL}
+  {block:IfNotOGImageURL}<meta name="twitter:card" content="summary">{/block:IfNotOGImageURL}
+  {block:IfTwitterUsername}<meta name="twitter:site" content="@{text:Twitter Username}">{/block:IfTwitterUsername}
+  {block:IfTwitterUsername}<meta name="twitter:creator" content="@{text:Twitter Username}">{/block:IfTwitterUsername}
+  <meta name="twitter:title" content="{Title}{block:PostTitle} — {PostTitle}{/block:PostTitle}">
+  {block:IfSEOTitleOverride}<meta name="twitter:title" content="{text:SEO Title Override}">{/block:IfSEOTitleOverride}
+  <meta name="twitter:description" content="{MetaDescription}">
+  {block:IfSEODescriptionOverride}<meta name="twitter:description" content="{text:SEO Description Override}">{/block:IfSEODescriptionOverride}
+  {block:IfOGImageURL}<meta name="twitter:image" content="{text:OG Image URL}">{/block:IfOGImageURL}
+
+  <!-- Optional JSON-LD (Schema.org) -->
+  {block:IfEnableSEOJSONLD}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "{Title}",
+    "url": "{BlogURL}",
+    "description": "{MetaDescription}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "{Title}",
+      "logo": { "@type": "ImageObject", "url": "{PortraitURL-128}" }
+    }
+  }
+  </script>
+  {/block:IfEnableSEOJSONLD}
+
+  <!-- Generic CTA (replaces Write Club) -->
+  <meta name="text:CTA Section Title" content="Community">
+  <meta name="text:CTA Blurb" content="Weekly gatherings for emerging writers in Calgary. Bring your drafts and kindness.">
+  <meta name="text:CTA Link URL" content="/tagged/community">
+  <meta name="text:CTA Link Label" content="See our community →">
 
   <!-- Donate / Support -->
   <meta name="if:Show Donate" content="1">
@@ -201,6 +272,18 @@
       <div class="header-actions">
         <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="{lang:Menu}">☰ {lang:Menu}</button>
       </div>
+
+  <!-- Search results meta (moved to bottom) -->
+  {block:SearchPage}
+    <section class="search-panel" aria-label="Search">
+      <div class="container">
+        <p class="search-meta">{SearchResultCount} {lang:Search results}</p>
+        {block:NoSearchResults}
+          <p class="no-results">{lang:No results found}</p>
+        {/block:NoSearchResults}
+      </div>
+    </section>
+  {/block:SearchPage}
     </div>
 
   <!-- Search Overlay -->
@@ -218,6 +301,8 @@
   <div id="drawer" class="drawer" aria-hidden="true" hidden>
     <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
       <button class="drawer-close" aria-label="Close menu">✕</button>
+      <h3 class="drawer-title"><a href="/" rel="home">{Title}</a></h3>
+      <hr class="drawer-sep"/>
       <nav class="drawer-nav" aria-label="Primary">
         {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
         {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i> {text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
@@ -227,7 +312,10 @@
         {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i> {SubmitLabel}</a>{/block:SubmissionsEnabled}
         <a href="/random"><i class="fa-solid fa-shuffle"></i> {lang:Random}</a>
         <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
+        <button class="palette-toggle" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i> {lang:Change palette}</button>
       </nav>
+      <hr class="drawer-sep"/>
+      {block:Description}<div class="drawer-blurb">{Description}</div>{/block:Description}
     </div>
   </div>
   </header>
@@ -255,23 +343,17 @@
   </section>
   {/block:IndexPage}
 
-  <!-- Search / Main layout -->
-  {block:SearchPage}
-    <section class="search-panel" aria-label="Search">
-      <div class="container">
-        <p class="search-meta">{SearchResultCount} {lang:Search results}</p>
-        {block:NoSearchResults}
-          <p class="no-results">{lang:No results found}</p>
-        {/block:NoSearchResults}
-      </div>
-    </section>
-  {/block:SearchPage}
-
   <!-- Main layout -->
   <div class="container content-wrapper">
     <main id="main" class="posts-container" tabindex="-1">
       {block:Posts}
-        <article class="post {PostType} {TagsAsClasses}" data-post-id="{PostID}">
+        <article class="post {PostType} {TagsAsClasses}{block:PinnedPost} pinned-post{/block:PinnedPost}" data-post-id="{PostID}">
+          {block:PinnedPost}
+            <div class="pinned-badge" aria-label="Pinned">
+              <i class="fa-solid fa-thumbtack" aria-hidden="true"></i>
+              <span>{PinnedPostLabel}</span>
+            </div>
+          {/block:PinnedPost}
           <!-- Text & NPF posts -->
           {block:Text}
             <div class="post-content text-post">
@@ -505,7 +587,7 @@
           <div class="about-text">{Description}</div>
         {/block:Description}
         {block:IfShowCurrentReading}
-          <p class="currently-reading"><strong>Currently:</strong> {text:Current Reading}</p>
+          <p class="currently-reading"><strong>Currently Reading:</strong> {text:Current Reading}</p>
         {/block:IfShowCurrentReading}
       </section>
 
