@@ -287,9 +287,9 @@ body[data-palette="Burnt"] {
 .like-wrapper i { position: absolute; pointer-events: none; }
 .like-wrapper iframe { opacity: 0; width: 100% !important; height: 100% !important; }
 
-.drawer { position: fixed; inset: 0; display: grid; grid-template-columns: 1fr; background: rgba(0,0,0,.35); opacity: 1; transition: opacity .2s ease; z-index: 9999; }
+.drawer { position: fixed; inset: 0; display: grid; grid-template-columns: 1fr; place-items: stretch; background: rgba(0,0,0,.35); opacity: 1; transition: opacity .2s ease; z-index: 9999; }
 .drawer[aria-hidden="true"] { opacity: 0; pointer-events: none; }
-.drawer-inner { position: fixed; top: 0; right: 0; margin-left: auto; width: min(92vw, 360px); background: var(--bg); height: 100vh; padding: .75rem; box-shadow: -8px 0 24px rgba(0,0,0,.2); display: flex; flex-direction: column; gap: .5rem; transform: translateX(0); transition: transform .2s ease; overflow: auto; }
+.drawer-inner { position: fixed; top: 0; right: 0; margin-left: auto; width: min(92vw, 360px); background: var(--bg); height: 100dvh; padding: .75rem; padding-bottom: max(.75rem, env(safe-area-inset-bottom)); box-shadow: -8px 0 24px rgba(0,0,0,.2); display: flex; flex-direction: column; gap: .5rem; transform: translateX(0); transition: transform .2s ease; overflow: auto; overscroll-behavior: contain; }
 .drawer[aria-hidden="true"] .drawer-inner { transform: translateX(100%); }
 .drawer-close { justify-self: end; border: none; background: transparent; font-size: 1.25rem; line-height: 1; padding: .25rem; border-radius: 6px; color: var(--text); }
 .drawer-close:hover { background: var(--hover); }
@@ -308,6 +308,7 @@ body[data-palette="Burnt"] {
 .drawer-title a:hover { text-decoration: underline; }
 .drawer-sep { height: 1px; background: var(--border); width: 100%; margin: .5rem 0; border: 0; }
 .drawer-blurb { font-size: .92rem; font-style: italic; opacity: .8; margin-top: .25rem; }
+.drawer-nav { display: grid; gap: .35rem; flex: 1 1 auto; overflow: auto; }
 
 /* ===================  Utilities: Borders & Shadows  ================== */
 .post, .sidebar .card { box-shadow:
