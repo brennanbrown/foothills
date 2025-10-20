@@ -87,6 +87,51 @@
   <meta name="text:AO3 URL" content="">
   <meta name="text:External Stylesheet URL" content="">
   <meta name="text:Footer SEO Blurb" content="Foothills is a warm, accessible Tumblr theme for poets and community builders—handmade typography, generous spacing, and reblog trails that highlight conversation.">
+  
+  <!-- Sidebar Text Options -->
+  <meta name="text:About Section Title" content="About">
+  <meta name="text:Connect Section Title" content="Connect">
+  <meta name="text:Newsletter Section Title" content="Newsletter">
+  <meta name="text:Blogroll Section Title" content="Fellow Writers">
+  <meta name="text:Support Section Title" content="Support">
+  <meta name="text:Social Email Label" content="Email">
+  <meta name="text:Social Instagram Label" content="Instagram">
+  <meta name="text:Social Bluesky Label" content="Bluesky">
+  <meta name="text:Social Goodreads Label" content="Goodreads">
+  <meta name="text:Social RSS Label" content="RSS">
+  <meta name="text:Social Twitter Label" content="Twitter">
+  <meta name="text:Social AO3 Label" content="AO3">
+  
+  <!-- Header & Navigation Text -->
+  <meta name="text:Skip to Content Label" content="Skip to content">
+  <meta name="text:Mobile Menu Title" content="Menu">
+  <meta name="text:Close Menu Label" content="Close">
+  <meta name="text:Close Menu Symbol" content="✕">
+  <meta name="text:Home Link Label" content="Home">
+  
+  <!-- Pagination -->
+  <meta name="text:Older Posts Label" content="Older posts">
+  <meta name="text:Newer Posts Label" content="Newer posts">
+  <meta name="text:Older Posts Symbol" content="→">
+  <meta name="text:Newer Posts Symbol" content="←">
+  
+  <!-- Post Metadata -->
+  <meta name="text:Currently Reading Label" content="Currently Reading:">
+  <meta name="text:Read More Label" content="Read more">
+  <meta name="text:Minutes Read Label" content="min read">
+  
+  <!-- Date Format -->
+  <meta name="text:DateFormat" content="%B %d, %Y">
+  <meta name="text:TimeFormat" content="%I:%M %p">
+  
+  <!-- Social Media Icons (Font Awesome classes) -->
+  <meta name="text:Email Icon" content="fa-regular fa-envelope">
+  <meta name="text:Instagram Icon" content="fa-brands fa-instagram">
+  <meta name="text:Bluesky Icon" content="fa-solid fa-cloud">
+  <meta name="text:Goodreads Icon" content="fa-solid fa-book-open">
+  <meta name="text:RSS Icon" content="fa-solid fa-square-rss">
+  <meta name="text:Twitter Icon" content="fa-brands fa-x-twitter">
+  <meta name="text:AO3 Icon" content="fa-solid fa-feather-pointed">
 
   <!-- Optional favicon URL fields (for custom domains or external hosting) -->
   <meta name="text:Apple Touch Icon URL" content="">
@@ -230,8 +275,22 @@
     body { margin: 0; font-family: var(--font-body, ui-serif, Georgia, serif); line-height: 1.6; }
     a { color: var(--link); }
     a:hover { color: var(--accent); }
-    .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
-    .site-header { position: sticky; top: 0; background: color-mix(in oklab, var(--bg) 90%, var(--accent) 10%); border-bottom: 1px solid rgba(0,0,0,.08); z-index: 100; }
+
+    /* Fallback palette variables (inlined) */
+    body[data-palette="Prairie"] {
+      --bg: #FFFEF7; --text: #2F2F2F; --accent: #D2691E; --link: #B8860B;
+    }
+    body[data-palette="River"] {
+      --bg: #F8FAFD; --text: #232A31; --accent: #2A9D8F; --link: #1E6F77;
+    }
+    body[data-palette="Night"] {
+      --bg: #0b0e11; --text: #EDEDED; --accent: #E3985B; --link: #F2B679;
+    }
+    body[data-palette="Burnt"] {
+      --bg: #120c08; --text: #F6F1EB; --accent: #D2691E; --link: #E0AA72;
+    }
+  
+    .site-header { border-bottom: 1px solid rgba(0,0,0,.08); background: var(--bg); }
     .header-content { display: flex; gap: 1rem; align-items: center; justify-content: flex-start; padding: .75rem 1rem; flex-wrap: nowrap; }
     .site-title { margin: 0; flex: 0 0 auto; }
     .main-nav { display: flex; gap: .75rem; flex-wrap: wrap; margin-left: 1.25rem; flex: 1 1 auto; align-items: center; }
@@ -254,7 +313,7 @@
   {CustomCSS}
 </head>
 <body class="foothills" data-palette="{select:Color Palette}">
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">{text:Skip to Content Label}</a>
 
   <!-- Header -->
   <header class="site-header">
@@ -306,8 +365,8 @@
   <!-- Mobile Drawer: combines nav + sidebar on small screens -->
   <div id="drawer" class="drawer" aria-hidden="true" hidden>
     <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
-      <button class="drawer-close" aria-label="Close menu">✕</button>
-      <h3 class="drawer-title"><a href="/" rel="home">{Title}</a></h3>
+      <button class="drawer-close" aria-label="{text:Close Menu Label}">{text:Close Menu Symbol}</button>
+      <h3 class="drawer-title"><a href="/" rel="home">{text:Home Link Label}</a></h3>
       <hr class="drawer-sep"/>
       <nav class="drawer-nav" aria-label="Primary">
         {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
@@ -511,23 +570,24 @@
                 </time>
               {/block:Date}
               {block:HasTags}
-                <div class="post-tags" aria-label="Tags">
+                <div class="post-tags" aria-label="{text:Tags Label}">
                   {block:Tags}<a href="{TagURL}" class="tag">#{Tag}</a>{/block:Tags}
                 </div>
               {/block:HasTags}
               {block:NoteCount}<span class="note-count">{NoteCountWithLabel}</span>{/block:NoteCount}
               {block:PinnedPostLabel}<span class="pinned">{PinnedPostLabel}</span>{/block:PinnedPostLabel}
+              {block:IfShowReadTime}{block:PostReadTime}<span class="post-readtime">{PostReadTime} {text:Minutes Read Label}</span>{/block:PostReadTime}{/block:IfShowReadTime}
             </div>
             <div class="post-actions">
               {block:ReblogURL}
-                <a class="btn-action" href="{ReblogURL}" aria-label="Reblog"><i class="fa-solid fa-retweet"></i></a>
+                <a class="btn-action" href="{ReblogURL}" aria-label="{text:Reblog Label}"><i class="fa-solid fa-retweet"></i></a>
               {/block:ReblogURL}
               {block:IfNotReblogURL}
-                <span class="reblog-fallback" aria-label="Reblog">
+                <span class="reblog-fallback" aria-label="{text:Reblog Label}">
                   {ReblogButton color="grey" size="28"}
                 </span>
               {/block:IfNotReblogURL}
-              <span class="like-wrapper" aria-label="Like">
+              <span class="like-wrapper" aria-label="{text:Like Label}">
                 <i class="fa-regular fa-heart"></i>
                 {LikeButton color="grey" size="28"}
               </span>
@@ -536,14 +596,14 @@
 
           {block:PermalinkPage}
             {block:PostNotes}
-              <section class="post-notes" aria-label="Notes">
+              <section class="post-notes" aria-label="{text:Notes Label}">
                 {PostNotes}
               </section>
             {/block:PostNotes}
 
             {block:RelatedPosts}
-              <section class="related-posts" aria-label="Related posts">
-                <h3 class="related-title">{lang:Related posts}</h3>
+              <section class="related-posts" aria-label="{text:Related Posts Label}">
+                <h3 class="related-title">{text:Related Posts Title}</h3>
                 <div class="related-grid">
                   {block:Posts}
                     <article class="related-card">
@@ -551,7 +611,7 @@
                         {block:Title}{Title}{/block:Title}
                         {block:PlaintextCaption}<small class="related-snippet">{PlaintextCaption}</small>{/block:PlaintextCaption}
                         {block:Quote}<small class="related-snippet">“{PlaintextQuote}”</small>{/block:Quote}
-                        {block:Photo}<small class="related-snippet">{lang:Photo}</small>{/block:Photo}
+                        {block:Photo}<small class="related-snippet">{text:Photo Label}</small>{/block:Photo}
                       </a>
                     </article>
                   {/block:Posts}
@@ -563,10 +623,10 @@
       {/block:Posts}
 
       <!-- Pagination -->
-      <nav class="pagination" role="navigation" aria-label="Pagination">
+      <nav class="pagination" role="navigation" aria-label="{text:Pagination Label}">
         {block:Pagination}
           {block:PreviousPage}
-            <a href="{PreviousPage}" class="prev-page" rel="prev">← Newer posts</a>
+            <a href="{PreviousPage}" class="prev-page" rel="prev">{text:Newer Posts Symbol} {text:Newer Posts Label}</a>
           {/block:PreviousPage}
 
           {block:JumpPagination length="5"}
@@ -589,46 +649,46 @@
     <aside class="sidebar" role="complementary">
       <!-- About -->
       <section class="about-widget card">
-        <h3>About Kenny</h3>
+        <h3>{text:About Section Title} {Title}</h3>
         <div class="about-photo">
           {block:ShowAvatar}
-            <img src="{PortraitURL-128}" alt="{Title} avatar" width="128" height="128">
+            <img src="{PortraitURL-128}" alt="{Title} {text:About Section Title}" width="128" height="128">
           {/block:ShowAvatar}
         </div>
         {block:Description}
           <div class="about-text">{Description}</div>
         {/block:Description}
         {block:IfShowCurrentReading}
-          <p class="currently-reading"><strong>Currently Reading:</strong> {text:Current Reading}</p>
+          <p class="currently-reading"><strong>{text:Currently Reading Label}</strong> {text:Current Reading}</p>
         {/block:IfShowCurrentReading}
       </section>
 
       <!-- Social Links -->
       <section class="social-widget card">
-        <h3>Connect</h3>
+        <h3>{text:Connect Section Title}</h3>
         <nav class="social-links" aria-label="Social links">
-          <a href="mailto:{text:Email Address}"><i class="fa-regular fa-envelope"></i>Email</a>
-          {block:IfInstagramURL}<a href="{text:Instagram URL}"><i class="fa-brands fa-instagram"></i>Instagram</a>{/block:IfInstagramURL}
-          {block:IfNotInstagramURL}{block:IfInstagramHandle}<a href="https://instagram.com/{text:Instagram Handle}"><i class="fa-brands fa-instagram"></i>Instagram</a>{/block:IfInstagramHandle}{/block:IfNotInstagramURL}
-          {block:IfBlueskyURL}<a href="{text:Bluesky URL}"><i class="fa-solid fa-cloud"></i>Bluesky</a>{/block:IfBlueskyURL}
-          {block:IfGoodreadsURL}<a href="{text:Goodreads URL}"><i class="fa-solid fa-book-open"></i>Goodreads</a>{/block:IfGoodreadsURL}
-          <a href="{RSS}"><i class="fa-solid fa-square-rss"></i>RSS</a>
-          {block:IfTwitterURL}<a href="{text:Twitter URL}"><i class="fa-brands fa-x-twitter"></i>Twitter</a>{/block:IfTwitterURL}
-          {block:IfAO3URL}<a href="{text:AO3 URL}"><i class="fa-solid fa-feather-pointed"></i>AO3</a>{/block:IfAO3URL}
+          <a href="mailto:{text:Email Address}"><i class="{text:Email Icon}"></i>{text:Social Email Label}</a>
+          {block:IfInstagramURL}<a href="{text:Instagram URL}"><i class="{text:Instagram Icon}"></i>{text:Social Instagram Label}</a>{/block:IfInstagramURL}
+          {block:IfNotInstagramURL}{block:IfInstagramHandle}<a href="https://instagram.com/{text:Instagram Handle}"><i class="{text:Instagram Icon}"></i>{text:Social Instagram Label}</a>{/block:IfInstagramHandle}{/block:IfNotInstagramURL}
+          {block:IfBlueskyURL}<a href="{text:Bluesky URL}"><i class="{text:Bluesky Icon}"></i>{text:Social Bluesky Label}</a>{/block:IfBlueskyURL}
+          {block:IfGoodreadsURL}<a href="{text:Goodreads URL}"><i class="{text:Goodreads Icon}"></i>{text:Social Goodreads Label}</a>{/block:IfGoodreadsURL}
+          <a href="{RSS}"><i class="{text:RSS Icon}"></i>{text:Social RSS Label}</a>
+          {block:IfTwitterURL}<a href="{text:Twitter URL}"><i class="{text:Twitter Icon}"></i>{text:Social Twitter Label}</a>{/block:IfTwitterURL}
+          {block:IfAO3URL}<a href="{text:AO3 URL}"><i class="{text:AO3 Icon}"></i>{text:Social AO3 Label}</a>{/block:IfAO3URL}
         </nav>
       </section>
 
       <!-- Substack Embed -->
       {block:IfSubstackEmbedCode}
         <section class="substack-widget card">
-          <h3>Newsletter</h3>
+          <h3>{text:Newsletter Section Title}</h3>
           {text:Substack Embed Code}
         </section>
       {/block:IfSubstackEmbedCode}
 
       <!-- Blogroll -->
       <section class="blogroll-widget card">
-        <h3>Fellow Writers</h3>
+        <h3>{text:Blogroll Section Title}</h3>
         <ul class="blogroll">
           {block:IfBlogrollLink1URL}
             <li>
@@ -673,7 +733,7 @@
       <!-- Donate / Support -->
       {block:IfShowDonate}
       <section class="donate-widget card">
-        <h3>Support</h3>
+        <h3>{text:Support Section Title}</h3>
         <p>{text:Donate Blurb}</p>
         <p><a class="cta-button" href="{text:Donate URL}" rel="noopener">{text:Donate Button Label}</a></p>
       </section>
