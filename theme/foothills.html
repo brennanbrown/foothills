@@ -1190,7 +1190,6 @@
         console.error('Error closing drawer:', error);
       }
     }
-      }
       
       // Event Listeners
       menuToggle.addEventListener('click', function(e) {
@@ -1204,44 +1203,40 @@
         closeDrawer();
       });
       
-      // Close when clicking outside the drawer
-      document.addEventListener('click', function(e) {
-        if (drawer.getAttribute('aria-hidden') === 'false' && 
-            !drawer.contains(e.target) && 
-            e.target !== menuToggle) {
-          closeDrawer();
-        }
+      // Close when clicking overlay
+      overlay.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeDrawer();
       });
       
-      // Close with Escape key
+      // Close on ESC key
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
           closeDrawer();
         }
       });
       
-      // Prevent clicks inside drawer from closing it
-      drawer.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-      
-      // Toggle drawer when menu button is clicked
-      if (menuToggle) {
-        menuToggle.addEventListener('click', toggleDrawer);
-      }
-      
-      // Close drawer when close button is clicked
-      if (closeButton) {
-        closeButton.addEventListener('click', closeDrawer);
-      }
-      
-      // Close drawer when clicking outside content
-      drawer.addEventListener('click', function(e) {
-        if (e.target === drawer) {
-          closeDrawer();
+      // Trap focus inside drawer when open
+      document.addEventListener('focus', function(e) {
+        if (drawer.getAttribute('aria-hidden') === 'false') {
+          const focusableElements = Array.from(drawer.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+          
+          if (!drawer.contains(e.target) && focusableElements.length > 0) {
+            focusableElements[0].focus();
+          }
         }
-      });
+      }, true);
       
+      // Close when clicking on a nav link (for single-page navigation)
+      const navLinks = drawer.querySelectorAll('a[href^="/"]');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          closeDrawer();
+        });
+      });
+    })();  
       // Close drawer with Escape key
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
