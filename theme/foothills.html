@@ -544,10 +544,7 @@
   <!-- Mobile Drawer: combines nav + sidebar on small screens -->
   <div id="drawer" class="drawer" aria-hidden="true" hidden>
     <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="{text:Mobile Menu Title}">
-      <div class="drawer-header">
-        <h3 class="drawer-title"><a href="/" rel="home">{Title}</a></h3>
-        <button class="drawer-close" type="button" aria-label="{text:Close Menu Label}" data-drawer-close>{text:Close Menu Symbol}</button>
-      </div>
+      <button class="drawer-close" type="button" aria-label="{text:Close Menu Label}" data-drawer-close>{text:Close Menu Symbol}</button>
       <nav class="drawer-nav" aria-label="Primary">
         {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-user"></i> {text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
         {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
@@ -560,8 +557,6 @@
         <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
         <button class="palette-toggle drawer-action" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i> {lang:Change palette}</button>
       </nav>
-      <hr class="drawer-sep"/>
-      {block:Description}<div class="drawer-blurb">{Description}</div>{/block:Description}
     </div>
   </div>
   </header>
