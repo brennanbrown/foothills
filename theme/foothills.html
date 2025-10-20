@@ -294,154 +294,7 @@
     .header-content { display: flex; gap: 1rem; align-items: center; justify-content: flex-start; padding: .75rem 1rem; flex-wrap: nowrap; }
     .site-title { margin: 0; flex: 0 0 auto; }
     .main-nav { display: flex; gap: .75rem; flex-wrap: wrap; margin-left: 1.25rem; flex: 1 1 auto; align-items: center; }
-    /* Mobile Menu Toggle Button */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      padding: 0.5rem;
-      cursor: pointer;
-      color: var(--text);
-      transition: opacity 0.2s ease;
-      margin-left: auto;
-      z-index: 1002;
-    }
-    
-    .menu-toggle:hover,
-    .menu-toggle:focus {
-      opacity: 0.8;
-      outline: none;
-    }
-    
-    .menu-toggle .icon {
-      display: block;
-      position: relative;
-      width: 24px;
-      height: 2px;
-      background: currentColor;
-      transition: all 0.3s ease;
-    }
-    
-    .menu-toggle .icon::before,
-    .menu-toggle .icon::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: currentColor;
-      left: 0;
-      transition: all 0.3s ease;
-    }
-    
-    .menu-toggle .icon::before {
-      top: -8px;
-    }
-    
-    .menu-toggle .icon::after {
-      bottom: -8px;
-    }
-    
-    .menu-toggle[aria-expanded="true"] .icon {
-      background: transparent;
-    }
-    
-    .menu-toggle[aria-expanded="true"] .icon::before {
-      transform: translateY(8px) rotate(45deg);
-    }
-    
-    .menu-toggle[aria-expanded="true"] .icon::after {
-      transform: translateY(-8px) rotate(-45deg);
-    }
-    
-    /* Mobile Menu Styles */
-    .drawer {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 100%;
-      max-width: 360px;
-      height: 100vh;
-      background: var(--bg);
-      z-index: 1001;
-      transition: transform 0.3s ease-in-out;
-      overflow-y: auto;
-      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .drawer[aria-hidden="false"] {
-      transform: translateX(-100%);
-    }
-    
-    .drawer-inner {
-      padding: 2rem;
-      position: relative;
-      min-height: 100%;
-    }
-    
-    .drawer-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text);
-      padding: 0.5rem;
-      line-height: 1;
-    }
-    
-    .drawer-title {
-      margin-top: 0;
-      padding-right: 2rem;
-    }
-    
-    .drawer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .drawer-nav a {
-      display: flex;
-      align-items: center;
-      padding: 0.75rem 0;
-      text-decoration: none;
-      color: var(--text);
-      transition: color 0.2s ease;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    .drawer-nav a:hover,
-    .drawer-nav a:focus {
-      color: var(--accent);
-    }
-    
-    .drawer-nav i {
-      width: 1.5rem;
-      margin-right: 0.75rem;
-      text-align: center;
-    }
-    
-    /* Overlay */
-    .drawer-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      z-index: 1000;
-    }
-    
-    .drawer-overlay.visible {
-      opacity: 1;
-      visibility: visible;
-    }
+    .menu-toggle { display: none; }
     .featured-tags { display: flex; flex-wrap: wrap; gap: .4rem; padding: .5rem 0 0.75rem; }
     .tag-chip { display: inline-block; padding: .25rem .5rem; border-radius: 999px; border: 1px solid rgba(0,0,0,.08); background: #fff; text-decoration: none; color: inherit; }
     /* Mobile Menu Toggle Button */
@@ -602,20 +455,27 @@
         display: none; 
       }
       .menu-toggle { 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
+        display: inline-flex; 
+        align-items: center; 
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
       }
-      
-      /* Hide scrollbar when menu is open */
-      body.drawer-open {
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
+      .menu-toggle i {
+        font-size: 1.1em;
+      }
+      .menu-text {
+        display: none;
+      }
+      @media (min-width: 400px) {
+        .menu-text {
+          display: inline;
+        }
       }
     }
   </style>
@@ -645,12 +505,13 @@
         <button class="search-toggle" type="button" aria-label="{lang:Search}" title="{lang:Search}"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
       </nav>
       <div class="header-actions">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="{lang:Menu}" data-drawer-toggle>
-          <span class="icon" aria-hidden="true"></span>
-          <span class="sr-only">{lang:Menu}</span>
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
-      <div class="drawer-overlay" id="drawer-overlay" tabindex="-1" aria-hidden="true"></div>
 
   <!-- Search results meta (moved to bottom) -->
   {block:SearchPage}
@@ -677,30 +538,18 @@
   </div>
 
   <!-- Mobile Drawer: combines nav + sidebar on small screens -->
-  <div id="drawer" class="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site menu">
-    <div class="drawer-inner">
-      <h3 class="drawer-title"><a href="/" rel="home">{Title}</a></h3>
-      <button class="drawer-close" aria-label="{lang:Close menu}" data-drawer-close>
-        <span aria-hidden="true">&times;</span>
-      </button>
-      
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
+      <button class="drawer-close" aria-label="{text:Close Menu Label}" data-drawer-close>{text:Close Menu Symbol}</button>
+      <h3 class="drawer-title"><a href="/" rel="home">{text:Home Link Label}</a></h3>
+      <hr class="drawer-sep"/>
       <nav class="drawer-nav" aria-label="Primary">
-        {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-user"></i>{text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
-        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i>{text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
-        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i>{text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
-        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i>{text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
-        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i>{text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
-        
-        <div class="drawer-divider"></div>
-        
-        {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i>{AskLabel}</a>{/block:AskEnabled}
-        {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i>{SubmitLabel}</a>{/block:SubmissionsEnabled}
-        <a href="/random"><i class="fa-solid fa-shuffle"></i>{lang:Random}</a>
-        <a href="/archive"><i class="fa-solid fa-box-archive"></i>{lang:Archive}</a>
-        
-        <div class="drawer-divider"></div>
-        
-        <a href="/search" class="search-link"><i class="fa-solid fa-magnifying-glass"></i>{lang:Search}</a>
+        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
+        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i> {text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
+        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
+        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i> {text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
+        {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i> {AskLabel}</a>{/block:AskEnabled}
+        {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i> {SubmitLabel}</a>{/block:SubmissionsEnabled}
         <a href="/random"><i class="fa-solid fa-shuffle"></i> {lang:Random}</a>
         <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
         <button class="palette-toggle" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i> {lang:Change palette}</button>
@@ -709,6 +558,27 @@
       {block:Description}<div class="drawer-blurb">{Description}</div>{/block:Description}
     </div>
   </div>
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" tabindex="-1">
+      <button class="close-menu" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <nav class="mobile-menu-nav" role="navigation" aria-label="Mobile navigation">
+        <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+        {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i> {AskLabel}</a>{/block:AskEnabled}
+        {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i> {SubmitLabel}</a>{/block:SubmissionsEnabled}
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
+        <a href="/random"><i class="fa-solid fa-shuffle"></i> {lang:Random}</a>
+        {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
+        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
+        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
+        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
+        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i> {text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
+        <button class="theme-toggle" aria-label="Toggle theme" data-theme-toggle>
+          <i class="fa-regular fa-moon"></i> <span>Toggle Theme</span>
+        </button>
+      </nav>
+    </div>
   </header>
 
   
@@ -1082,7 +952,7 @@
         <a href="/random"><i class="fa-solid fa-shuffle"></i>Random</a>
       </nav>
       <div class="footer-copy">
-        <p>  {Title}.<br>Built with <a href="https://github.com/brennanbrown/foothills" rel="noopener">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca" rel="noopener">Brennan Kenneth Brown</a>.</p>
+        <p>© {CopyrightYears} {Title}.<br>Built with <a href="https://github.com/brennanbrown/foothills" rel="noopener">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca" rel="noopener">Brennan Kenneth Brown</a>.</p>
       </div>
       <div class="footer-seo">
         <p>{text:Footer SEO Blurb}</p>
@@ -1113,137 +983,116 @@
     {/block:IfEnablePoetrySpecialFormatting}
 
     // Mobile menu functionality
-  (function() {
-    const menuToggle = document.querySelector('[data-drawer-toggle]');
-    const drawer = document.getElementById('drawer');
-    const closeBtn = document.querySelector('[data-drawer-close]');
-    const overlay = document.getElementById('drawer-overlay');
-    
-    // Check if required elements exist
-    if (!menuToggle || !drawer || !closeBtn || !overlay) {
-      console.warn('Missing required elements for mobile drawer');
-      return;
-    }
-    
-    // Toggle drawer state
-    function toggleDrawer() {
-      const isOpen = drawer.getAttribute('aria-hidden') === 'false';
-      if (isOpen) {
-        closeDrawer();
-      } else {
-        openDrawer();
+    (function() {
+      'use strict';
+      
+      // Initialize elements
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const closeBtn = mobileMenu ? mobileMenu.querySelector('.close-menu') : null;
+      
+      // Check if required elements exist
+      if (!menuToggle || !mobileMenu || !closeBtn) {
+        console.warn('Missing required elements for mobile menu');
+        return;
       }
-    }
-    
-    // Open drawer with focus management
-    function openDrawer() {
-      try {
-        // Show drawer and overlay
-        drawer.hidden = false;
-        overlay.classList.add('visible');
-        document.documentElement.style.overflow = 'hidden'; // Prevent scrolling
-        
-        // Force reflow to ensure the initial state is set
-        void drawer.offsetHeight;
-        
-        // Start the transition
-        drawer.setAttribute('aria-hidden', 'false');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('drawer-open');
-        
-        // Focus the first focusable element in the drawer
-        const focusable = Array.from(drawer.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
-        
-        if (focusable.length > 0) {
-          focusable[0].focus();
+      
+      // Toggle menu state
+      function toggleMenu() {
+        const isOpen = mobileMenu.getAttribute('aria-hidden') === 'false';
+        if (isOpen) {
+          closeMenu();
         } else {
-          closeBtn.focus();
+          openMenu();
         }
-      } catch (error) {
-        console.error('Error opening drawer:', error);
       }
-    }
-    
-    // Close drawer with focus management
-    function closeDrawer() {
-      try {
-        if (drawer.getAttribute('aria-hidden') === 'true') return;
-        
-        drawer.setAttribute('aria-hidden', 'true');
-        overlay.classList.remove('visible');
-        document.documentElement.style.overflow = ''; // Re-enable scrolling
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('drawer-open');
-        
-        // Hide after transition
-        setTimeout(() => { 
-          if (drawer.getAttribute('aria-hidden') === 'true') {
-            drawer.hidden = true;
-          }
-        }, 300);
-        
-        // Return focus to the menu toggle button
-        menuToggle.focus();
-      } catch (error) {
-        console.error('Error closing drawer:', error);
+      
+      // Open menu with focus management
+      function openMenu() {
+        try {
+          // Lock body scroll
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          
+          // Show the menu
+          mobileMenu.hidden = false;
+          
+          // Force reflow to ensure the initial state is set
+          void mobileMenu.offsetHeight;
+          
+          // Start the transition
+          mobileMenu.setAttribute('aria-hidden', 'false');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          
+          // Focus the close button
+          closeBtn.focus();
+        } catch (error) {
+          console.error('Error opening menu:', error);
+        }
       }
-    }
+      
+      // Close menu with focus management
+      function closeMenu() {
+        try {
+          if (mobileMenu.getAttribute('aria-hidden') === 'true') return;
+          
+          // Unlock body scroll
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          
+          // Start the transition
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          
+          // Return focus to the menu toggle button
+          menuToggle.focus();
+          
+          // Hide after transition
+          setTimeout(() => { 
+            if (mobileMenu.getAttribute('aria-hidden') === 'true') {
+              mobileMenu.hidden = true;
+            }
+          }, 300);
+        } catch (error) {
+          console.error('Error closing menu:', error);
+        }
+      }
       
       // Event Listeners
       menuToggle.addEventListener('click', function(e) {
         e.preventDefault();
-        toggleDrawer();
+        e.stopPropagation();
+        toggleMenu();
       });
       
       // Close button
       closeBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        closeDrawer();
+        closeMenu();
       });
       
-      // Close when clicking overlay
-      overlay.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeDrawer();
-      });
-      
-      // Close on ESC key
+      // Close with Escape key
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
-          closeDrawer();
+        if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
+          closeMenu();
         }
       });
       
-      // Trap focus inside drawer when open
-      document.addEventListener('focus', function(e) {
-        if (drawer.getAttribute('aria-hidden') === 'false') {
-          const focusableElements = Array.from(drawer.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
-          
-          if (!drawer.contains(e.target) && focusableElements.length > 0) {
-            focusableElements[0].focus();
-          }
-        }
-      }, true);
-      
-      // Close when clicking on a nav link (for single-page navigation)
-      const navLinks = drawer.querySelectorAll('a[href^="/"]');
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          closeDrawer();
+      // Close when clicking on a menu link
+      const menuLinks = mobileMenu.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Allow default link behavior but close the menu
+          closeMenu();
         });
       });
-    })();  
-      // Close drawer with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
-          closeDrawer();
+      
+      // Close when clicking outside the menu content
+      mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+          closeMenu();
         }
       });
-      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDrawer(); });
     })();
 
     // Palette toggle: cycles between predefined palettes and stores preference

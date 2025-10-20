@@ -64,7 +64,29 @@
         <button class="search-toggle palette-toggle" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
       </nav>
       <div class="header-actions">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer">☰ Menu</button>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      
+      <!-- Mobile Navigation Menu -->
+      <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" tabindex="-1">
+        <button class="close-menu" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <nav class="mobile-menu-nav" role="navigation" aria-label="Mobile navigation">
+          <a href="#"><i class="fa-solid fa-user"></i> About</a>
+          <a href="#"><i class="fa-solid fa-book"></i> Books</a>
+          <a href="#"><i class="fa-regular fa-circle-question"></i> Ask</a>
+          <a href="#"><i class="fa-regular fa-paper-plane"></i> Submit</a>
+          <a href="#"><i class="fa-solid fa-shuffle"></i> Random</a>
+          <a href="#"><i class="fa-solid fa-box-archive"></i> Archive</a>
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <i class="fa-regular fa-moon"></i> <span>Toggle Theme</span>
+          </button>
+        </nav>
       </div>
     </div>
   </header>
@@ -381,65 +403,77 @@
   <script>
     // Mobile menu functionality
     (function() {
-      // Elements
+      'use strict';
+      
+      // Initialize elements
       const menuToggle = document.querySelector('.menu-toggle');
-      const drawer = document.getElementById('drawer');
-      const drawerClose = drawer ? drawer.querySelector('.drawer-close') : null;
+      const mobileMenu = document.getElementById('mobile-menu');
+      const closeBtn = mobileMenu ? mobileMenu.querySelector('.close-menu') : null;
       
-      // Return if elements don't exist
-      if (!menuToggle || !drawer) return;
+      // Check if required elements exist
+      if (!menuToggle || !mobileMenu || !closeBtn) {
+        console.warn('Missing required elements for mobile menu');
+        return;
+      }
       
-      // Initialize ARIA attributes
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-controls', 'drawer');
-      menuToggle.setAttribute('aria-label', 'Toggle menu');
-      drawer.setAttribute('aria-hidden', 'true');
-      
-      // Open drawer function
-      function openDrawer() {
-        // Show the drawer
-        drawer.hidden = false;
-        // Force reflow to ensure the initial state is set
-        void drawer.offsetHeight;
-        // Start the transition
-        drawer.setAttribute('aria-hidden', 'false');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('drawer-open');
-        
-        // Focus the first focusable element in the drawer
-        const focusable = Array.from(drawer.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
-        
-        if (focusable.length > 0) {
-          focusable[0].focus();
+      // Toggle menu state
+      function toggleMenu() {
+        const isOpen = mobileMenu.getAttribute('aria-hidden') === 'false';
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
         }
       }
       
-      // Close drawer function
-      function closeDrawer() {
-        drawer.setAttribute('aria-hidden', 'true');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('drawer-open');
-        
-        // Hide after transition
-        setTimeout(() => { 
-          if (drawer.getAttribute('aria-hidden') === 'true') {
-            drawer.hidden = true;
-          }
-        }, 300);
-        
-        // Return focus to the menu toggle button
-        menuToggle.focus();
+      // Open menu with focus management
+      function openMenu() {
+        try {
+          // Lock body scroll
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          
+          // Show the menu
+          mobileMenu.hidden = false;
+          
+          // Force reflow to ensure the initial state is set
+          void mobileMenu.offsetHeight;
+          
+          // Start the transition
+          mobileMenu.setAttribute('aria-hidden', 'false');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          
+          // Focus the close button
+          closeBtn.focus();
+        } catch (error) {
+          console.error('Error opening menu:', error);
+        }
       }
       
-      // Toggle drawer function
-      function toggleDrawer() {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-          closeDrawer();
-        } else {
-          openDrawer();
+      // Close menu with focus management
+      function closeMenu() {
+        try {
+          if (mobileMenu.getAttribute('aria-hidden') === 'true') return;
+          
+          // Unlock body scroll
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          
+          // Start the transition
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          
+          // Return focus to the menu toggle button
+          menuToggle.focus();
+          
+          // Hide after transition
+          setTimeout(() => { 
+            if (mobileMenu.getAttribute('aria-hidden') === 'true') {
+              mobileMenu.hidden = true;
+            }
+          }, 300);
+        } catch (error) {
+          console.error('Error closing menu:', error);
         }
       }
       
@@ -447,30 +481,42 @@
       menuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        toggleDrawer();
+        toggleMenu();
       });
       
       // Close button
-      if (drawerClose) {
-        drawerClose.addEventListener('click', function(e) {
-          e.preventDefault();
-          closeDrawer();
-        });
-      }
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeMenu();
+      });
       
-      // Close when clicking outside the drawer
-      document.addEventListener('click', function(e) {
-        if (drawer.getAttribute('aria-hidden') === 'false' && 
-            !drawer.contains(e.target) && 
-            e.target !== menuToggle) {
-          closeDrawer();
+      // Close with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
+          closeMenu();
+        }
+      });
+      
+      // Close when clicking on a menu link
+      const menuLinks = mobileMenu.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Allow default link behavior but close the menu
+          closeMenu();
+        });
+      });
+      
+      // Close when clicking outside the menu content
+      mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+          closeMenu();
         }
       });
       
       // Close with Escape key
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
-          closeDrawer();
+        if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
+          closeMenu();
         }
       });
       
