@@ -123,7 +123,7 @@ body[data-palette="Burnt"] {
 }
 
 /* ==============================  Header  ============================== */
-.site-header { position: relative; top: auto; z-index: 10; background: var(--surface-soft); border-bottom: 1px solid var(--border); }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--surface-soft); border-bottom: 1px solid var(--border); }
 .site-header .header-content { display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: .75rem; padding-top: .5rem; padding-bottom: .5rem; }
 .site-title { flex: 0 0 auto; margin: 0; line-height: 1; }
 .site-title a { display: block; color: inherit; text-decoration: none; font-size: clamp(1.05rem, 0.9rem + 0.7vw, 1.35rem); padding: .1rem 0; line-height: 1; }
@@ -313,6 +313,9 @@ body[data-palette="Burnt"] {
   .content-wrapper { grid-template-columns: 1fr; }
   .sidebar { order: 0; width: 100%; }
   .hero-content { padding: 1.75rem 1rem; }
+  .site-header { position: static; }
+  .header-content { flex-direction: column; align-items: center; gap: .65rem; text-align: center; }
+  .site-title { width: 100%; }
   .main-nav { justify-content: center; gap: .45rem; }
   .main-nav a { padding: .25rem .4rem; font-size: .9rem; }
   .main-nav a i { margin-right: .3rem; font-size: 1rem; }
