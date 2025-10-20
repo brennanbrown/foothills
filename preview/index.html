@@ -323,12 +323,15 @@
     /* Drawer Styles */
     .drawer { 
       position: fixed; 
-      inset: 0; 
-      background: rgba(0,0,0,0.5); 
+      top: 0; 
+      right: 0; 
+      bottom: 0; 
+      left: 0; 
       z-index: 1000;
+      background: rgba(0,0,0,0.5); 
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
     }
 
     .drawer[aria-hidden="false"] {
@@ -341,8 +344,8 @@
       top: 0;
       right: 0;
       width: min(92vw, 360px); 
-      background: var(--bg); 
       height: 100%; 
+      background: var(--bg); 
       padding: 1.5rem; 
       box-shadow: -8px 0 24px rgba(0,0,0,.2); 
       transform: translateX(100%);
@@ -369,6 +372,13 @@
       color: var(--text);
       padding: 0.5rem;
       line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .drawer-close:hover,
+    .drawer-close:focus {
+      color: var(--accent);
+      outline: none;
     }
 
     .drawer-title {
@@ -416,10 +426,7 @@
       background: rgba(0,0,0,0.05);
       color: var(--accent);
       transform: translateX(4px);
-    }
-
-    .drawer-nav a:hover {
-      color: var(--accent);
+      outline: none;
     }
 
     .drawer-nav i {
@@ -483,7 +490,7 @@
   {CustomCSS}
 </head>
 <body class="foothills" data-palette="{select:Color Palette}">
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">{text:Skip to Content Label}</a>
 
   <!-- Header -->
   <header class="site-header">
@@ -500,11 +507,14 @@
         {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i>{AskLabel}</a>{/block:AskEnabled}
         {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i>{SubmitLabel}</a>{/block:SubmissionsEnabled}
         <a href="/random"><i class="fa-solid fa-shuffle"></i>{lang:Random}</a>
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i>{lang:Archive}</a>
+        <button class="palette-toggle" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i></button>
+        <button class="search-toggle" type="button" aria-label="{lang:Search}" title="{lang:Search}"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
       </nav>
       <div class="header-actions">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" data-drawer-toggle>
-          <i class="fa-solid fa-bars"></i>
-          <span>Menu</span>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="{lang:Menu}" data-drawer-toggle>
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          <span class="menu-text">{lang:Menu}</span>
         </button>
       </div>
 
@@ -535,17 +545,19 @@
   <!-- Mobile Drawer: combines nav + sidebar on small screens -->
   <div id="drawer" class="drawer" aria-hidden="true">
     <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
-      <button class="drawer-close" aria-label="Close menu" data-drawer-close>✕</button>
-      <div class="site-branding">
-        <h1 class="site-title"><a href="/" rel="home">Foothills Theme</a></h1>
-        <p class="site-description">A clean, accessible Tumblr theme</p>
-      </div>
+      <button class="drawer-close" aria-label="{text:Close Menu Label}" data-drawer-close>{text:Close Menu Symbol}</button>
+      <h3 class="drawer-title"><a href="/" rel="home">{text:Home Link Label}</a></h3>
+      <hr class="drawer-sep"/>
       <nav class="drawer-nav" aria-label="Primary">
-        <a href="/about" class="nav-link">About</a>
-        <a href="/archive" class="nav-link">Archive</a>
-        <a href="/ask" class="nav-link">Ask</a>
-        <a href="/submit" class="nav-link">Submit</a>
-        <a href="/random"><i class="fa-solid fa-shuffle"></i>Random</a>
+        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
+        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i> {text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
+        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
+        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i> {text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
+        {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i> {AskLabel}</a>{/block:AskEnabled}
+        {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i> {SubmitLabel}</a>{/block:SubmissionsEnabled}
+        <a href="/random"><i class="fa-solid fa-shuffle"></i> {lang:Random}</a>
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
+        <button class="palette-toggle" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i> {lang:Change palette}</button>
       </nav>
       <hr class="drawer-sep"/>
       {block:Description}<div class="drawer-blurb">{Description}</div>{/block:Description}
@@ -915,14 +927,16 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="/about" class="nav-link">About</a>
-        <a href="/archive" class="nav-link">Archive</a>
-        <a href="/ask" class="nav-link">Ask</a>
-        <a href="/submit" class="nav-link">Submit</a>
+        {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-user"></i>{text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
+        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i>{text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
+        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i>{text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
+        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i>{text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
+        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i>{text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i>Archive</a>
         <a href="/random"><i class="fa-solid fa-shuffle"></i>Random</a>
       </nav>
       <div class="footer-copy">
-        <p>  {Title}.<br>Built with <a href="https://github.com/brennanbrown/foothills" rel="noopener">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca" rel="noopener">Brennan Kenneth Brown</a>.</p>
+        <p>© {CopyrightYears} {Title}.<br>Built with <a href="https://github.com/brennanbrown/foothills" rel="noopener">Foothills <i class="fa-solid fa-mountain" aria-hidden="true"></i></a> — a Tumblr theme crafted for poets and community — by <a href="https://brennanbrown.ca" rel="noopener">Brennan Kenneth Brown</a>.</p>
       </div>
       <div class="footer-seo">
         <p>{text:Footer SEO Blurb}</p>
@@ -956,19 +970,30 @@
       if (!btn || !drawer || !closeBtn) return;
 
       function openDrawer() {
+        // Ensure the drawer is visible before starting the transition
         drawer.hidden = false;
+        // Force a reflow to ensure the initial state is set
+        void drawer.offsetHeight;
+        // Start the transition
         drawer.setAttribute('aria-hidden', 'false');
         btn.setAttribute('aria-expanded', 'true');
         document.body.classList.add('drawer-open');
-        closeBtn.focus();
+        // Focus the first focusable element when drawer opens
+        const focusable = drawer.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusable) focusable.focus();
       }
       function closeDrawer() {
         drawer.setAttribute('aria-hidden', 'true');
         btn.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('drawer-open');
         // Use a small timeout to allow CSS transition to complete before hiding
-        setTimeout(function(){ drawer.hidden = true; }, 250);
-        btn.focus();
+        setTimeout(function() { 
+          if (drawer.getAttribute('aria-hidden') === 'true') {
+            drawer.hidden = true;
+          }
+        }, 300);
+        // Return focus to the menu toggle button
+        if (btn) btn.focus();
       }
       // Mobile menu toggle
       const menuToggle = document.querySelector('[data-drawer-toggle]');
@@ -1003,8 +1028,26 @@
       
       // Toggle drawer when menu button is clicked
       if (menuToggle) {
-        menuToggle.addEventListener('click', toggleDrawer);
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleDrawer();
+        });
       }
+
+      // Close drawer when clicking outside
+      drawer.addEventListener('click', function(e) {
+        if (e.target === drawer) {
+          closeDrawer();
+        }
+      });
+
+      // Close drawer with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
+          closeDrawer();
+        }
+      });
       
       // Close drawer when close button is clicked
       if (closeButton) {
