@@ -202,6 +202,12 @@
   <meta name="text:CTA Link URL" content="/tagged/community">
   <meta name="text:CTA Link Label" content="See our community →">
 
+  <!-- Hero Copy -->
+  <meta name="text:Hero Heading" content="Hey there! I'm Kenny.">
+  <meta name="text:Hero Body" content="I believe every voice deserves to be heard—especially the ones that have been overlooked. As the founder of Write Club, I work with emerging writers to find their truth and power through storytelling.">
+  <meta name="text:Hero CTA Blurb" content="Working on something and need a writing buddy?">
+  <meta name="text:Hero CTA Button Label" content="Let's chat over decaf ☕">
+
   <!-- Donate / Support -->
   <meta name="if:Show Donate" content="1">
   <meta name="text:Donate Service" content="Ko-fi">
@@ -567,15 +573,12 @@
   <section class="hero-section" role="region" aria-label="Introduction">
     <div class="container hero-content">
       <div class="hero-inner">
-        <h2 class="hero-greeting" style="font-family: var(--font-headers, var(--font-body));">Hey there! I'm Kenny.</h2>
-        <p class="hero-intro">
-          I believe every voice deserves to be heard—especially the ones that have been overlooked.
-          As the founder of Write Club, I work with emerging writers to find their truth and power through storytelling.
-        </p>
+        <h2 class="hero-greeting" style="font-family: var(--font-headers, var(--font-body));">{text:Hero Heading}</h2>
+        <p class="hero-intro">{text:Hero Body}</p>
         {block:IfShowCalendlyCTA}
           <div class="cta-container">
-            <p class="cta-text">Working on something and need a writing buddy?</p>
-            <a href="{text:Calendly Link}" class="cta-button" rel="noopener">Let's chat over decaf ☕</a>
+            <p class="cta-text">{text:Hero CTA Blurb}</p>
+            <a href="{text:Calendly Link}" class="cta-button" rel="noopener">{text:Hero CTA Button Label}</a>
           </div>
         {/block:IfShowCalendlyCTA}
       </div>
