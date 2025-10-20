@@ -4,6 +4,26 @@ All notable changes to Foothills will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning.
 
+## [Unreleased]
+### Added
+- Google Fonts integration in preview (Cormorant Garamond for poetry, Inter for UI)
+- Enhanced mobile menu with better accessibility and keyboard navigation
+- Error handling and fallbacks for image loading
+- Improved color palette toggle with localStorage persistence
+
+### Fixed
+- Fixed JavaScript errors in mobile menu implementation
+- Resolved issues with drawer focus management
+- Fixed duplicate event listeners in mobile navigation
+- Addressed linting and syntax issues in theme JavaScript
+- Fixed image loading errors with proper fallbacks
+
+### Changed
+- Refactored JavaScript for better performance and maintainability
+- Improved mobile menu animations and transitions
+- Updated preview to be fully static with hardcoded content
+- Enhanced error handling throughout the codebase
+
 ## [0.2.0] - 2025-09-14
 ### Added
 - Mobile drawer refinements:

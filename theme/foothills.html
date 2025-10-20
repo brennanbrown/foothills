@@ -941,47 +941,40 @@
   <script>
     {block:IfEnablePoetrySpecialFormatting}
     // Tag-based poetry formatting for posts tagged #poetry or #poem (respects theme toggle)
-    document.addEventListener('DOMContentLoaded', function () {
-      var posts = document.querySelectorAll('.post');
-      posts.forEach(function (post) {
-        var tags = post.querySelector('.post-tags');
-        var body = post.querySelector('.post-body');
-        if (!tags || !body) return;
-        var t = tags.textContent.toLowerCase();
-        if (t.includes('#poetry') || t.includes('#poem')) {
-          body.classList.add('poetry-formatting');
-        }
-      });
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        const posts = document.querySelectorAll('.post');
+        posts.forEach(function(post) {
+          const tags = post.querySelector('.post-tags');
+          const body = post.querySelector('.post-body');
+          if (!tags || !body) return;
+          const tagText = tags.textContent.toLowerCase();
+          if (tagText.includes('#poetry') || tagText.includes('#poem')) {
+            body.classList.add('poetry-formatting');
+          }
+        });
+      } catch (error) {
+        console.warn('Error applying poetry formatting:', error);
+      }
     });
     {/block:IfEnablePoetrySpecialFormatting}
 
-    // Mobile drawer toggle
+    // Mobile drawer functionality
     (function() {
-      var btn = document.querySelector('.menu-toggle');
-      var drawer = document.getElementById('drawer');
-      var closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
-      if (!btn || !drawer || !closeBtn) return;
-
-      function openDrawer() {
-        drawer.hidden = false;
-        drawer.setAttribute('aria-hidden', 'false');
-        btn.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('drawer-open');
-        closeBtn.focus();
-      }
-      function closeDrawer() {
-        drawer.setAttribute('aria-hidden', 'true');
-        btn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('drawer-open');
-        // Use a small timeout to allow CSS transition to complete before hiding
-        setTimeout(function(){ drawer.hidden = true; }, 250);
-        btn.focus();
-      }
-      // Mobile menu toggle
-      const menuToggle = document.querySelector('[data-drawer-toggle]');
-      const closeButton = document.querySelector('[data-drawer-close]');
-      const drawer = document.getElementById('drawer');
+      'use strict';
       
+      // Initialize elements
+      const menuToggle = document.querySelector('.menu-toggle, [data-drawer-toggle]');
+      const drawer = document.getElementById('drawer');
+      const closeBtn = drawer ? drawer.querySelector('.drawer-close, [data-drawer-close]') : null;
+      
+      // Check if required elements exist
+      if (!menuToggle || !drawer || !closeBtn) {
+        console.warn('Missing required elements for mobile drawer');
+        return;
+      }
+      
+      // Toggle drawer state
       function toggleDrawer() {
         const isOpen = drawer.getAttribute('aria-hidden') === 'false';
         if (isOpen) {
@@ -991,22 +984,94 @@
         }
       }
       
+      // Open drawer with focus management
       function openDrawer() {
-        drawer.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('drawer-open');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        // Focus the first focusable element when drawer opens
-        const focusable = drawer.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (focusable) focusable.focus();
+        try {
+          // Show the drawer
+          drawer.hidden = false;
+          
+          // Force reflow to ensure the initial state is set
+          void drawer.offsetHeight;
+          
+          // Start the transition
+          drawer.setAttribute('aria-hidden', 'false');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          document.body.classList.add('drawer-open');
+          
+          // Focus the first focusable element in the drawer
+          const focusable = Array.from(drawer.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+          
+          if (focusable.length > 0) {
+            focusable[0].focus();
+          } else {
+            closeBtn.focus();
+          }
+        } catch (error) {
+          console.error('Error opening drawer:', error);
+        }
       }
       
+      // Close drawer with focus management
       function closeDrawer() {
-        drawer.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('drawer-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        // Return focus to menu toggle when drawer closes
-        menuToggle.focus();
+        try {
+          if (drawer.getAttribute('aria-hidden') === 'true') return;
+          
+          drawer.setAttribute('aria-hidden', 'true');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('drawer-open');
+          
+          // Hide after transition
+          setTimeout(() => { 
+            if (drawer.getAttribute('aria-hidden') === 'true') {
+              drawer.hidden = true;
+            }
+          }, 300);
+          
+          // Return focus to the menu toggle button
+          if (menuToggle) {
+            menuToggle.focus();
+          }
+        } catch (error) {
+          console.error('Error closing drawer:', error);
+        }
       }
+      }
+      
+      // Event Listeners
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleDrawer();
+      });
+      
+      // Close button
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeDrawer();
+      });
+      
+      // Close when clicking outside the drawer
+      document.addEventListener('click', function(e) {
+        if (drawer.getAttribute('aria-hidden') === 'false' && 
+            !drawer.contains(e.target) && 
+            e.target !== menuToggle) {
+          closeDrawer();
+        }
+      });
+      
+      // Close with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
+          closeDrawer();
+        }
+      });
+      
+      // Prevent clicks inside drawer from closing it
+      drawer.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
       
       // Toggle drawer when menu button is clicked
       if (menuToggle) {
