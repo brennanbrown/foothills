@@ -505,11 +505,9 @@
         <button class="search-toggle" type="button" aria-label="{lang:Search}" title="{lang:Search}"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
       </nav>
       <div class="header-actions">
-        <!-- Mobile Menu Toggle -->
-        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="{lang:Menu}" data-drawer-toggle>
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          <span class="menu-text">{lang:Menu}</span>
         </button>
       </div>
 
@@ -538,12 +536,14 @@
   </div>
 
   <!-- Mobile Drawer: combines nav + sidebar on small screens -->
-  <div id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
-      <button class="drawer-close" aria-label="{text:Close Menu Label}" data-drawer-close>{text:Close Menu Symbol}</button>
-      <h3 class="drawer-title"><a href="/" rel="home">{text:Home Link Label}</a></h3>
-      <hr class="drawer-sep"/>
+  <div id="drawer" class="drawer" aria-hidden="true" hidden>
+    <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="{text:Mobile Menu Title}">
+      <div class="drawer-header">
+        <h3 class="drawer-title"><a href="/" rel="home">{Title}</a></h3>
+        <button class="drawer-close" type="button" aria-label="{text:Close Menu Label}" data-drawer-close>{text:Close Menu Symbol}</button>
+      </div>
       <nav class="drawer-nav" aria-label="Primary">
+        {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-user"></i> {text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
         {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-book"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
         {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-envelope"></i> {text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
         {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
@@ -552,33 +552,12 @@
         {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i> {SubmitLabel}</a>{/block:SubmissionsEnabled}
         <a href="/random"><i class="fa-solid fa-shuffle"></i> {lang:Random}</a>
         <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
-        <button class="palette-toggle" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i> {lang:Change palette}</button>
+        <button class="palette-toggle drawer-action" type="button" aria-label="{lang:Change palette}" title="{lang:Change palette}" onclick="window.foothillsNextPalette && window.foothillsNextPalette()"><i class="fa-solid fa-palette" aria-hidden="true"></i> {lang:Change palette}</button>
       </nav>
       <hr class="drawer-sep"/>
       {block:Description}<div class="drawer-blurb">{Description}</div>{/block:Description}
     </div>
   </div>
-    <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" tabindex="-1">
-      <button class="close-menu" aria-label="Close menu">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <nav class="mobile-menu-nav" role="navigation" aria-label="Mobile navigation">
-        <a href="/"><i class="fa-solid fa-house"></i> Home</a>
-        {block:AskEnabled}<a href="/ask"><i class="fa-regular fa-circle-question"></i> {AskLabel}</a>{/block:AskEnabled}
-        {block:SubmissionsEnabled}<a href="/submit"><i class="fa-regular fa-paper-plane"></i> {SubmitLabel}</a>{/block:SubmissionsEnabled}
-        <a href="/archive"><i class="fa-solid fa-box-archive"></i> {lang:Archive}</a>
-        <a href="/random"><i class="fa-solid fa-shuffle"></i> {lang:Random}</a>
-        {block:IfNavLink1URL}<a href="{text:Nav Link 1 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 1 Label}</a>{/block:IfNavLink1URL}
-        {block:IfNavLink2URL}<a href="{text:Nav Link 2 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 2 Label}</a>{/block:IfNavLink2URL}
-        {block:IfNavLink3URL}<a href="{text:Nav Link 3 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 3 Label}</a>{/block:IfNavLink3URL}
-        {block:IfNavLink4URL}<a href="{text:Nav Link 4 URL}"><i class="fa-solid fa-link"></i> {text:Nav Link 4 Label}</a>{/block:IfNavLink4URL}
-        {block:IfNavLink5URL}<a href="{text:Nav Link 5 URL}"><i class="fa-solid fa-star"></i> {text:Nav Link 5 Label}</a>{/block:IfNavLink5URL}
-        <button class="theme-toggle" aria-label="Toggle theme" data-theme-toggle>
-          <i class="fa-regular fa-moon"></i> <span>Toggle Theme</span>
-        </button>
-      </nav>
-    </div>
   </header>
 
   
@@ -982,115 +961,115 @@
     });
     {/block:IfEnablePoetrySpecialFormatting}
 
-    // Mobile menu functionality
+    // Mobile drawer functionality
     (function() {
       'use strict';
-      
-      // Initialize elements
-      const menuToggle = document.querySelector('.menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const closeBtn = mobileMenu ? mobileMenu.querySelector('.close-menu') : null;
-      
-      // Check if required elements exist
-      if (!menuToggle || !mobileMenu || !closeBtn) {
-        console.warn('Missing required elements for mobile menu');
+
+      const drawer = document.getElementById('drawer');
+      const drawerInner = drawer ? drawer.querySelector('.drawer-inner') : null;
+      const menuToggle = document.querySelector('[data-drawer-toggle]');
+      const closeBtn = drawer ? drawer.querySelector('[data-drawer-close]') : null;
+      const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      let lastFocused = null;
+      const transitionDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 300;
+
+      if (!drawer || !drawerInner || !menuToggle || !closeBtn) {
         return;
       }
-      
-      // Toggle menu state
-      function toggleMenu() {
-        const isOpen = mobileMenu.getAttribute('aria-hidden') === 'false';
-        if (isOpen) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      }
-      
-      // Open menu with focus management
-      function openMenu() {
-        try {
-          // Lock body scroll
-          document.documentElement.style.overflow = 'hidden';
-          document.body.style.overflow = 'hidden';
-          
-          // Show the menu
-          mobileMenu.hidden = false;
-          
-          // Force reflow to ensure the initial state is set
-          void mobileMenu.offsetHeight;
-          
-          // Start the transition
-          mobileMenu.setAttribute('aria-hidden', 'false');
-          menuToggle.setAttribute('aria-expanded', 'true');
-          
-          // Focus the close button
-          closeBtn.focus();
-        } catch (error) {
-          console.error('Error opening menu:', error);
-        }
-      }
-      
-      // Close menu with focus management
-      function closeMenu() {
-        try {
-          if (mobileMenu.getAttribute('aria-hidden') === 'true') return;
-          
-          // Unlock body scroll
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          
-          // Start the transition
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          
-          // Return focus to the menu toggle button
-          menuToggle.focus();
-          
-          // Hide after transition
-          setTimeout(() => { 
-            if (mobileMenu.getAttribute('aria-hidden') === 'true') {
-              mobileMenu.hidden = true;
-            }
-          }, 300);
-        } catch (error) {
-          console.error('Error closing menu:', error);
-        }
-      }
-      
-      // Event Listeners
-      menuToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleMenu();
-      });
-      
-      // Close button
-      closeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeMenu();
-      });
-      
-      // Close with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
-          closeMenu();
-        }
-      });
-      
-      // Close when clicking on a menu link
-      const menuLinks = mobileMenu.querySelectorAll('a');
-      menuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          // Allow default link behavior but close the menu
-          closeMenu();
+
+      function getFocusable() {
+        return Array.from(drawer.querySelectorAll(focusableSelector)).filter(function(el) {
+          return el.offsetParent !== null;
         });
+      }
+
+      function trapFocus(event) {
+        if (event.key !== 'Tab') {
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeDrawer();
+          }
+          return;
+        }
+
+        const focusable = getFocusable();
+        if (!focusable.length) {
+          event.preventDefault();
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+
+      function openDrawer() {
+        if (drawer.getAttribute('aria-hidden') === 'false') {
+          return;
+        }
+
+        lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        drawer.hidden = false;
+
+        requestAnimationFrame(function() {
+          drawer.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('drawer-open');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          const focusable = getFocusable();
+          (focusable[0] || closeBtn).focus();
+        });
+
+        document.addEventListener('keydown', trapFocus, true);
+      }
+
+      function closeDrawer() {
+        if (drawer.getAttribute('aria-hidden') === 'true') {
+          return;
+        }
+
+        drawer.setAttribute('aria-hidden', 'true');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('drawer-open');
+        document.removeEventListener('keydown', trapFocus, true);
+
+        setTimeout(function() {
+          if (drawer.getAttribute('aria-hidden') === 'true') {
+            drawer.hidden = true;
+            (lastFocused || menuToggle).focus({ preventScroll: true });
+          }
+        }, transitionDelay);
+      }
+
+      menuToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (drawer.getAttribute('aria-hidden') === 'true') {
+          openDrawer();
+        } else {
+          closeDrawer();
+        }
       });
-      
-      // Close when clicking outside the menu content
-      mobileMenu.addEventListener('click', function(e) {
-        if (e.target === mobileMenu) {
-          closeMenu();
+
+      closeBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        closeDrawer();
+      });
+
+      drawer.addEventListener('click', function(event) {
+        if (event.target === drawer) {
+          closeDrawer();
+        }
+      });
+
+      drawerInner.addEventListener('transitionend', function() {
+        if (drawer.getAttribute('aria-hidden') === 'true') {
+          drawer.hidden = true;
         }
       });
     })();

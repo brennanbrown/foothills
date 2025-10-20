@@ -64,29 +64,10 @@
         <button class="search-toggle palette-toggle" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
       </nav>
       <div class="header-actions">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu" data-drawer-toggle>
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          <span class="menu-text">Menu</span>
         </button>
-      </div>
-      
-      <!-- Mobile Navigation Menu -->
-      <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" tabindex="-1">
-        <button class="close-menu" aria-label="Close menu">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <nav class="mobile-menu-nav" role="navigation" aria-label="Mobile navigation">
-          <a href="#"><i class="fa-solid fa-user"></i> About</a>
-          <a href="#"><i class="fa-solid fa-book"></i> Books</a>
-          <a href="#"><i class="fa-regular fa-circle-question"></i> Ask</a>
-          <a href="#"><i class="fa-regular fa-paper-plane"></i> Submit</a>
-          <a href="#"><i class="fa-solid fa-shuffle"></i> Random</a>
-          <a href="#"><i class="fa-solid fa-box-archive"></i> Archive</a>
-          <button class="theme-toggle" aria-label="Toggle theme">
-            <i class="fa-regular fa-moon"></i> <span>Toggle Theme</span>
-          </button>
-        </nav>
       </div>
     </div>
   </header>
@@ -331,266 +312,149 @@
 
   <!-- Mobile Drawer Menu -->
   <div id="drawer" class="drawer" aria-hidden="true" hidden>
-    <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Site menu">
-      <button class="drawer-close" aria-label="Close menu">
-        <span class="sr-only">Close menu</span>
-        <i class="fa-solid fa-times" aria-hidden="true"></i>
-      </button>
-      <h2 class="drawer-title"><a href="/">Foothills</a></h2>
-      
-      <nav class="drawer-nav" aria-label="Main menu">
-        <a href="/about">
-          <i class="fa-fw fa-solid fa-user"></i>
-          About
-        </a>
-        <a href="/books">
-          <i class="fa-fw fa-solid fa-book"></i>
-          Books
-        </a>
-        <a href="/contact">
-          <i class="fa-fw fa-solid fa-envelope"></i>
-          Contact
-        </a>
-        <a href="/submit">
-          <i class="fa-fw fa-regular fa-paper-plane"></i>
-          Submit
-        </a>
-        <a href="/random">
-          <i class="fa-fw fa-solid fa-shuffle"></i>
-          Random
-        </a>
-        <a href="/archive">
-          <i class="fa-fw fa-solid fa-box-archive"></i>
-          Archive
-        </a>
-      </nav>
-      <hr class="drawer-sep"/>
-      <nav class="drawer-nav" aria-label="Social links">
-        <a href="https://instagram.com/example" target="_blank" rel="noopener">
-          <i class="fa-fw fa-brands fa-instagram"></i>
-          Instagram
-        </a>
-        <a href="https://twitter.com/example" target="_blank" rel="noopener">
-          <i class="fa-fw fa-brands fa-twitter"></i>
-          Twitter
-        </a>
-        <a href="https://bsky.app/profile/example.bsky.social" target="_blank" rel="noopener">
-          <i class="fa-fw fa-solid fa-cloud"></i>
-          Bluesky
-        </a>
-        <a href="https://www.goodreads.com/user/show/example" target="_blank" rel="noopener">
-          <i class="fa-fw fa-solid fa-book-open"></i>
-          Goodreads
-        </a>
-        <a href="https://archiveofourown.org/users/example" target="_blank" rel="noopener">
-          <i class="fa-fw fa-solid fa-book-atlas"></i>
-          AO3
-        </a>
-        <a href="mailto:mail@example.com">
-          <i class="fa-fw fa-regular fa-envelope"></i>
-          Email
-        </a>
-      </nav>
-      <hr class="drawer-sep"/>
-      <div class="current-reading">
-        <h3>Currently Reading</h3>
-        <p><em>Braiding Sweetgrass</em> by Robin Wall Kimmerer</p>
+    <div class="drawer-inner" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer-header">
+        <h3 class="drawer-title"><a href="/">Foothills</a></h3>
+        <button class="drawer-close" type="button" aria-label="Close" data-drawer-close>✕</button>
       </div>
-      <div class="drawer-blurb">A warm, accessible Tumblr theme for poets and community—handmade typography and reblog trails that highlight conversation.</div>
+      <nav class="drawer-nav" aria-label="Primary">
+        <a href="/about"><i class="fa-solid fa-user"></i> About</a>
+        <a href="/books"><i class="fa-solid fa-book"></i> Books</a>
+        <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+        <a href="/submit"><i class="fa-regular fa-paper-plane"></i> Submit</a>
+        <a href="/random"><i class="fa-solid fa-shuffle"></i> Random</a>
+        <a href="/archive"><i class="fa-solid fa-box-archive"></i> Archive</a>
+        <button class="palette-toggle drawer-action" type="button" aria-label="Change palette" title="Change palette"><i class="fa-solid fa-palette" aria-hidden="true"></i> Change palette</button>
+      </nav>
+      <hr class="drawer-sep"/>
+      <div class="drawer-blurb">A warm Tumblr theme for poets and community—handmade typography and reblog trails that highlight conversation.</div>
     </div>
   </div>
 
   <script>
     // Mobile menu functionality
     (function() {
-      'use strict';
-      
-      // Initialize elements
-      const menuToggle = document.querySelector('.menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const closeBtn = mobileMenu ? mobileMenu.querySelector('.close-menu') : null;
-      
-      // Check if required elements exist
-      if (!menuToggle || !mobileMenu || !closeBtn) {
-        console.warn('Missing required elements for mobile menu');
+      const drawer = document.getElementById('drawer');
+      const drawerInner = drawer ? drawer.querySelector('.drawer-inner') : null;
+      const menuToggle = document.querySelector('[data-drawer-toggle]');
+      const closeBtn = drawer ? drawer.querySelector('[data-drawer-close]') : null;
+      const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      let lastFocused = null;
+      const transitionDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 300;
+
+      if (!drawer || !drawerInner || !menuToggle || !closeBtn) {
         return;
       }
-      
-      // Toggle menu state
-      function toggleMenu() {
-        const isOpen = mobileMenu.getAttribute('aria-hidden') === 'false';
-        if (isOpen) {
-          closeMenu();
-        } else {
-          openMenu();
+
+      function getFocusable() {
+        return Array.from(drawer.querySelectorAll(focusableSelector)).filter(function(el) {
+          return el.offsetParent !== null;
+        });
+      }
+
+      function trapFocus(event) {
+        if (event.key !== 'Tab') {
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeDrawer();
+          }
+          return;
+        }
+
+        const focusable = getFocusable();
+        if (!focusable.length) {
+          event.preventDefault();
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
         }
       }
-      
-      // Open menu with focus management
-      function openMenu() {
-        try {
-          // Lock body scroll
-          document.documentElement.style.overflow = 'hidden';
-          document.body.style.overflow = 'hidden';
-          
-          // Show the menu
-          mobileMenu.hidden = false;
-          
-          // Force reflow to ensure the initial state is set
-          void mobileMenu.offsetHeight;
-          
-          // Start the transition
-          mobileMenu.setAttribute('aria-hidden', 'false');
+
+      function openDrawer() {
+        if (drawer.getAttribute('aria-hidden') === 'false') {
+          return;
+        }
+
+        lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        drawer.hidden = false;
+
+        requestAnimationFrame(function() {
+          drawer.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('drawer-open');
           menuToggle.setAttribute('aria-expanded', 'true');
-          
-          // Focus the close button
-          closeBtn.focus();
-        } catch (error) {
-          console.error('Error opening menu:', error);
-        }
+          const focusable = getFocusable();
+          (focusable[0] || closeBtn).focus();
+        });
+
+        document.addEventListener('keydown', trapFocus, true);
       }
-      
-      // Close menu with focus management
-      function closeMenu() {
-        try {
-          if (mobileMenu.getAttribute('aria-hidden') === 'true') return;
-          
-          // Unlock body scroll
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          
-          // Start the transition
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          
-          // Return focus to the menu toggle button
-          menuToggle.focus();
-          
-          // Hide after transition
-          setTimeout(() => { 
-            if (mobileMenu.getAttribute('aria-hidden') === 'true') {
-              mobileMenu.hidden = true;
-            }
-          }, 300);
-        } catch (error) {
-          console.error('Error closing menu:', error);
+
+      function closeDrawer() {
+        if (drawer.getAttribute('aria-hidden') === 'true') {
+          return;
         }
+
+        drawer.setAttribute('aria-hidden', 'true');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('drawer-open');
+        document.removeEventListener('keydown', trapFocus, true);
+
+        setTimeout(function() {
+          if (drawer.getAttribute('aria-hidden') === 'true') {
+            drawer.hidden = true;
+            (lastFocused || menuToggle).focus({ preventScroll: true });
+          }
+        }, transitionDelay);
       }
-      
-      // Event Listeners
-      menuToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleMenu();
-      });
-      
-      // Close button
-      closeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeMenu();
-      });
-      
-      // Close with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
-          closeMenu();
+
+      menuToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (drawer.getAttribute('aria-hidden') === 'true') {
+          openDrawer();
+        } else {
+          closeDrawer();
         }
       });
-      
-      // Close when clicking on a menu link
-      const menuLinks = mobileMenu.querySelectorAll('a');
-      menuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          // Allow default link behavior but close the menu
-          closeMenu();
-        });
+
+      closeBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        closeDrawer();
       });
-      
-      // Close when clicking outside the menu content
-      mobileMenu.addEventListener('click', function(e) {
-        if (e.target === mobileMenu) {
-          closeMenu();
+
+      drawer.addEventListener('click', function(event) {
+        if (event.target === drawer) {
+          closeDrawer();
         }
       });
-      
-      // Close with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
-          closeMenu();
+
+      drawerInner.addEventListener('transitionend', function() {
+        if (drawer.getAttribute('aria-hidden') === 'true') {
+          drawer.hidden = true;
         }
-      });
-      
-      // Search functionality
-      const searchToggle = document.querySelector('.search-toggle');
-      const searchOverlay = document.getElementById('search-overlay');
-      const searchClose = searchOverlay ? searchOverlay.querySelector('.search-close') : null;
-      
-      if (searchToggle && searchOverlay) {
-        // Initialize search overlay
-        searchOverlay.setAttribute('aria-hidden', 'true');
-        searchOverlay.hidden = true;
-        
-        // Toggle search overlay
-        function toggleSearch() {
-          const isHidden = searchOverlay.hidden;
-          searchOverlay.hidden = !isHidden;
-          searchOverlay.setAttribute('aria-hidden', isHidden ? 'false' : 'true');
-          
-          if (isHidden) {
-            // Focus the search input when opening
-            const searchInput = searchOverlay.querySelector('input[type="text"]');
-            if (searchInput) {
-              searchInput.focus();
-            }
-            document.body.classList.add('search-open');
-          } else {
-            // Return focus to the toggle when closing
-            searchToggle.focus();
-            document.body.classList.remove('search-open');
-          }
-        }
-        
-        // Event listeners for search
-        searchToggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          toggleSearch();
-        });
-        
-        if (searchClose) {
-          searchClose.addEventListener('click', function(e) {
-            e.preventDefault();
-            toggleSearch();
-          });
-        }
-        
-        // Close search with Escape key
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && searchOverlay.getAttribute('aria-hidden') === 'false') {
-            toggleSearch();
-          }
-        });
-        
-        // Close when clicking outside the search box
-        searchOverlay.addEventListener('click', function(e) {
-          if (e.target === searchOverlay) {
-            toggleSearch();
-          }
-        });
-      }
-      // Initialize color palette buttons if they exist
-      const paletteButtons = document.querySelectorAll('.palette-toggle');
-      paletteButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          const body = document.body;
-          const currentPalette = body.dataset.palette || 'default';
-          const palettes = ['default', 'forest', 'ocean', 'sunset', 'midnight'];
-          const currentIndex = palettes.indexOf(currentPalette);
-          const nextIndex = (currentIndex + 1) % palettes.length;
-          body.dataset.palette = palettes[nextIndex];
-        });
       });
     })();
+    // Initialize color palette buttons if they exist
+    const paletteButtons = document.querySelectorAll('.palette-toggle');
+    paletteButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const body = document.body;
+        const currentPalette = body.dataset.palette || 'default';
+        const palettes = ['default', 'forest', 'ocean', 'sunset', 'midnight'];
+        const currentIndex = palettes.indexOf(currentPalette);
+        const nextIndex = (currentIndex + 1) % palettes.length;
+        body.dataset.palette = palettes[nextIndex];
+      });
+    });
 
     // Search overlay toggle (preview)
     (function() {
