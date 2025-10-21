@@ -812,6 +812,7 @@
         if (saved && palettes.indexOf(saved) !== -1) setPalette(saved);
       } catch (e) {}
       btns.forEach(function(b){ b.addEventListener('click', nextPalette); });
+      btns.forEach(function(b){ if (b.hasAttribute('onclick')) { b.removeAttribute('onclick'); } });
     })();
 
     // Search overlay toggle
