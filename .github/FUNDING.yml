@@ -1,8 +1,7 @@
-# GitHub Sponsors configuration
-# These links power the "Sponsor" button on GitHub
+# These are supported funding model platforms
 
-# GitHub Sponsors username
-github: brennanbrown
 
-# Ko-fi username (without the domain)
+github: [brennanbrown]
+patreon: brennankbrown
 ko_fi: brennan
+custom: ["https://berryhouse.ca/support/"]
